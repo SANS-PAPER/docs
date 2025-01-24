@@ -1,0 +1,52 @@
+---
+title: 'Troubleshooting'
+description: 'Troubleshooting issues on SPF Web'
+---
+
+## Yarn Build Error
+
+- This error may happen on frontend project while trying to run this command `yarn build`.
+
+- Most probably encountered because the command takes more than default memory setting to build a project.
+
+- Workaround for this issue is you have to run the command with extra parameter as below.
+
+```sh
+NODE_OPTIONS="--max_old_space_size=4096" yarn build
+```
+
+
+
+## Fulltext Search Error
+
+- This error may happen on backend project while trying to run this command `php artisan init:fulltext-search`.
+
+- Most probably encountered because the command takes more than 60 seconds, which violates the default php artisan setting.
+
+- Workaround for this issue is you have to manually run each flush commands and import commands. Lists as below.
+
+```sh
+php artisan scout:sync-index-settings
+php artisan scout:flush "\App\Models\User"
+php artisan scout:import "\App\Models\User"
+php artisan scout:flush "\App\Models\FillupForm"
+php artisan scout:import "\App\Models\FillupForm"
+php artisan scout:flush "\App\Models\FormTemplate"
+php artisan scout:import "\App\Models\FormTemplate"
+php artisan scout:flush "\App\Models\Equipment"
+php artisan scout:import "\App\Models\Equipment"
+php artisan scout:flush "\App\Models\Issuance"
+php artisan scout:import "\App\Models\Issuance"
+php artisan scout:flush "\App\Models\EquipmentType"
+php artisan scout:import "\App\Models\EquipmentType"
+php artisan scout:flush "\App\Models\Organization"
+php artisan scout:import "\App\Models\Organization"
+```
+
+- After successfully run each code above, run clear cache commands.
+
+```sh
+ php artisan cache:clear
+ php artisan lighthouse:clear-cache
+```
+
