@@ -29,6 +29,10 @@
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Developers Guide",
+      "url": "dev-guide"
     }
   ],
   "anchors": [
@@ -80,6 +84,51 @@
         "api-reference/endpoint/get",
         "api-reference/endpoint/create",
         "api-reference/endpoint/delete"
+      ]
+    },
+    {
+      "group": "Sans Paper Form Web",
+      "pages": [
+        "dev-guide/spfw/deploy-local",
+        "dev-guide/spfw/deploy-staging",
+        "dev-guide/spfw/deploy-production",
+        "dev-guide/spfw/troubleshooting"
+      ]
+    },
+    {
+      "group": "Sans Paper Form Mobile",
+      "pages": [
+        "dev-guide/spfm/introduction"
+      ]
+    },
+    {
+      "group": "Sans Paper ID Web",
+      "pages": [
+        "dev-guide/spiw/introduction"
+      ]
+    },
+    {
+      "group": "Sans Paper ID Mobile",
+      "pages": [
+        "dev-guide/spim/introduction"
+      ]
+    },
+    {
+      "group": "Sans Paper Pilot",
+      "pages": [
+        "dev-guide/spp/introduction"
+      ]
+    },
+    {
+      "group": "Sans Paper Hub",
+      "pages": [
+        "dev-guide/sph/introduction"
+      ]
+    },
+    {
+      "group": "Sans Paper Connect",
+      "pages": [
+        "dev-guide/spc/introduction"
       ]
     }
   ],

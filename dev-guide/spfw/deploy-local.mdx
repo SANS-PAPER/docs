@@ -1,0 +1,148 @@
+---
+title: 'Local Deployment'
+description: 'How to deploy SPF Web on local machine'
+---
+
+<Note>
+  This documentation created based on Windows operating system. If you are using Linux / Mac OS to develop, please use another suitable applications for develoment process.
+</Note>
+
+## <Icon icon="list-check"  size={30}/> Prerequisite
+- Node.js v18.20 or above
+- PostgreSQL version 14.5 and above
+- PHP v8
+- Laravel v8
+
+## <Icon icon="circle-play"  size={30}/> Getting Started
+- Install latest [Laragon](https://laragon.org/download/).
+- Install PostgreSql into your Laragon. Get at least PostgreSql version 14.5.
+- You can refer to steps provided in the [PostgreSQL Tutorial](https://dev.to/dendihandian/adding-postgresql-to-laragon-2kde). Only follow until _'PHP and Laravel Setup'_ section.
+- Setup the PostgreSql accordingly and create a test database to make sure everything is correct.
+- For ease of use, click the _'Database'_ button at the Laragon app to view the database in the UI version.
+
+## <Icon icon="Github" size={30}/> Clone Github Projects
+- Download front end project from Github. [sanspaper-form-admin-portal](https://github.com/SANS-PAPER/sanspaper-form-admin-portal).
+- Download backend project from Github. [Sans-Paper-API](https://github.com/SANS-PAPER/Sans-Paper-API).
+- Download SPI project from Github. [SPI](https://github.com/SANS-PAPER/SPI).
+
+## <Icon icon="gears"  size={30}/> Configure Project SPI
+- Rename file .env-local to .env
+- Change below DB settings to match your setup. (username and password that you set up during PostgreSQL installation)
+
+```env .env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=spi_db
+DB_USERNAME=postgres
+DB_PASSWORD=
+```
+
+- Open PostgreSQL . Create the database as defined at DB_DATABASE in the .env file.
+- Open terminal. For ease of use, click the _'Terminal'_ button at the Laragon app to open a terminal.
+- Change directory into SPI project. Run below command.
+
+```sh
+composer install
+php artisan migrate:refresh
+php artisan cache:clear
+```
+
+## <Icon icon="gears"  size={30}/> Configure Project Sans-Paper-API
+- Rename file .env-local to .env
+- Change below DB settings to match your setup. (username and password that you set up during PostgreSQL installation)
+
+```env .env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=spf_db
+DB_USERNAME=postgres
+DB_PASSWORD=
+```
+
+- Open terminal. For ease of use, click the _'Terminal'_ button at the Laragon app to open a terminal.
+- Change directory into Sans-Paper-API project. Run below command.
+
+```sh
+composer install 
+php artisan storage:link 
+```
+
+- Import recent copy of Sans-Paper-API database from Staging server.
+- Refer to Database Export and Backup Import section.  
+
+## <Icon icon="gears"  size={30}/> Configure project sanspaper-form-admin-portal 
+- Rename file .env-local to .env
+- Download and install Meilisearch. 
+- Make sure to configure the Meilisearch using the master key option based on this [Meilisearch Tutorial](https://www.meilisearch.com/docs/learn/self_hosted/getting_started_with_self_hosted_meilisearch).
+- Open terminal. For ease of use, click the _'Terminal'_ button at the Laragon app to open a terminal.
+- Change directory into sanspaper-form-admin-portal project. Run below command.
+
+```sh
+yarn install
+```
+
+- Fix any issue that occurs. Command 'yarn install' must be success without any error for the project to be run.
+
+## <Icon icon="react"  size={30}/> Start the projects
+
+### Start Frontend
+
+- Open new terminal, change directory to sanspaper-form-admin-portal project.
+- Run commands below.
+
+```sh
+yarn install
+npm start
+```
+
+- Do not close the terminal.
+
+### Start Meilisearch
+
+- Open new terminal, change directory to Meilisearch install location.
+- Start Meilisearch.
+
+```sh
+.\meilisearch.exe --master-key xxxxxxxxxxxxxxxxxxxx	
+```
+
+- Do not close the terminal.
+
+
+### Start SPI
+- Open new terminal, change directory to SPI project.
+- Run commands below.
+
+```sh
+php artisan cache:clear  
+php artisan lighthouse:clear-cache
+php artisan serve --port=8001
+```
+
+- Do not close the terminal.
+
+
+### Start Backend
+- Open new terminal, change directory to Sans-Paper-API project.
+- Run commands below.
+
+```sh
+php artisan cache:clear  
+php artisan lighthouse:clear-cache
+php artisan init:fulltext-search
+php artisan serve --port=8000
+```
+
+<Note>
+  If the command `php artisan init:fulltext-search` produces error, refer to the 'Troubleshooting' section.
+</Note>
+
+
+## <Icon icon="eye"  size={30}/> Accessing the project 
+
+- To open the Sans Paper Form, use this url [https://localhost:3000/](https://localhost:3000/)
+- To open the Sans Paper Form API, use [http://localhost:8000/](http://localhost:8000/) 
+
+
