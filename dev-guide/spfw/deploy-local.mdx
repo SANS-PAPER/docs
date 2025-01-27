@@ -44,9 +44,11 @@ DB_PASSWORD=
 
 ```sh
 composer install
-php artisan migrate:refresh
 php artisan cache:clear
 ```
+
+- Import recent copy of SPI database from Staging server.
+- Refer to 'Database Export' and 'Database Import' section.  
 
 ## <Icon icon="gears"  size={30}/> Configure Project Sans-Paper-API
 - Rename file .env-local to .env
@@ -70,7 +72,7 @@ php artisan storage:link
 ```
 
 - Import recent copy of Sans-Paper-API database from Staging server.
-- Refer to Database Export and Backup Import section.  
+- Refer to 'Database Export' and 'Database Import' section.  
 
 ## <Icon icon="gears"  size={30}/> Configure project sanspaper-form-admin-portal 
 - Rename file .env-local to .env
