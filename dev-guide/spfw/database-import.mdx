@@ -1,0 +1,104 @@
+---
+title: 'Database Import'
+description: 'How to import sample PostgreSQL database into local machine'
+---
+
+## <Icon icon="list-check"  size={30}/> Prerequisite
+- SQL file from Staging database.
+
+
+## Import sql File to Database
+- Please make sure to create the required database first. For example `spf_db` for Sans-Paper-API and `spi_db` for SPI. 
+- Open command prompt as Administrator.
+- Change location to the sql file.
+- Import the sql file using below command.
+
+```sh
+psql --username=<db_user_name> databasename < data_base_dump.sql
+```
+
+- Next, run these Sql lines to create views table for `spf_db` database.
+
+```sql vw_field_property_option_answers
+DROP VIEW IF EXISTS vw_field_property_option_answers;
+CREATE VIEW vw_field_property_option_answers AS
+SELECT
+    fff.fillup_form_id
+  , fff.id AS fillup_form_field_id
+  , f.id AS form_id
+  , f.uuid AS form_uuid
+  , fff.field_id AS form_field_id
+  , CASE WHEN is_valid_json(answer.value) THEN '' ELSE answer.value END AS answer
+  , f.deleted_at AS field_deleted_at
+FROM fillup_form_fields fff
+INNER JOIN fillup_forms ff ON (ff.id = fff.fillup_form_id)
+INNER JOIN fields f ON (f.id = fff.field_id)
+INNER JOIN field_properties fp ON (fp.field_id = f.id)
+INNER JOIN json_array_elements_text(fff.answer::json) answer(value) ON (true)
+WHERE (is_valid_json_array(fff.answer)) AND (fp.property_id = 209);
+```
+
+```sql vw_field_property_option_choices
+DROP VIEW IF EXISTS vw_field_property_option_choices;
+CREATE VIEW vw_field_property_option_choices AS
+SELECT
+    row_number() OVER() AS seqno
+  , f.form_id
+  , fp.field_id
+  , c.id AS component_id
+  , c.description AS component_desc
+  , opt_arr.obj->>'uuid' AS uuid
+  , opt_arr.obj->>'description' AS description
+  , f.deleted_at AS field_deleted_at
+FROM field_properties AS fp
+INNER JOIN fields f ON ((f.id = fp.field_id) AND (f.deleted_at IS NULL))
+INNER JOIN components c ON (c.id = f.component_id)
+INNER JOIN properties p ON (p.id = fp.property_id)
+INNER JOIN jsonb_array_elements(fp.value::jsonb) opt_arr(obj) ON (true)
+WHERE (fp.property_id = 209);
+```
+
+```sql vw_field_properties_pivot
+DROP VIEW IF EXISTS vw_field_properties_pivot;
+CREATE VIEW vw_field_properties_pivot AS
+SELECT
+    fields.form_id
+  , fields.sort_order
+  , fields.id AS field_id
+  , fields.component_id
+  , MAX(CASE WHEN true THEN components.description ELSE NULL END) AS "component_desc"
+  , MAX(CASE WHEN properties.id = 201 THEN field_properties.value ELSE NULL END) AS "text"
+  , MAX(CASE WHEN properties.id = 202 THEN field_properties.value ELSE NULL END) AS "value"
+  , MAX(CASE WHEN properties.id = 203 THEN field_properties.value ELSE NULL END) AS "datasource"
+  , MAX(CASE WHEN properties.id = 204 THEN field_properties.value ELSE NULL END) AS "height"
+  , MAX(CASE WHEN properties.id = 205 THEN field_properties.value ELSE NULL END) AS "width"
+  , MAX(CASE WHEN properties.id = 206 THEN field_properties.value ELSE NULL END) AS "class"
+  , MAX(CASE WHEN properties.id = 207 THEN field_properties.value ELSE NULL END) AS "image_src"
+  , MAX(CASE WHEN properties.id = 208 THEN field_properties.value ELSE NULL END) AS "css"
+  , MAX(CASE WHEN properties.id = 209 THEN field_properties.value ELSE NULL END) AS "option"
+  , MAX(CASE WHEN properties.id = 210 THEN field_properties.value ELSE NULL END) AS "is_visible"
+  , MAX(CASE WHEN properties.id = 211 THEN field_properties.value ELSE NULL END) AS "enabled"
+  , MAX(CASE WHEN properties.id = 212 THEN field_properties.value ELSE NULL END) AS "is_required"
+  , MAX(CASE WHEN properties.id = 213 THEN field_properties.value ELSE NULL END) AS "label"
+  , MAX(CASE WHEN properties.id = 214 THEN field_properties.value ELSE NULL END) AS "name"
+  , MAX(CASE WHEN properties.id = 215 THEN field_properties.value ELSE NULL END) AS "data"
+  , fields.deleted_at AS "field_deleted_at"
+FROM fields
+INNER JOIN field_properties ON (field_properties.field_id = fields.id)
+INNER JOIN properties ON (properties.id = field_properties.property_id)
+INNER JOIN components ON (components.id = fields.component_id)
+GROUP BY fields.form_id, fields.id
+ORDER BY fields.sort_order ASC;
+```
+
+<Note>
+  After successful creating the views table, you should see some values inside the views table auto-generated using current data.
+</Note>
+
+ 
+- Next, update the ID sequence to the latest value in your `spf_db` database for every table that has increment ID as primary key.
+- For example, in the `users` table, the latest id is `507`, so you should update the value as per below SQL code.
+
+```sql
+ALTER SEQUENCE users_id_seq RESTART WITH 508;
+```

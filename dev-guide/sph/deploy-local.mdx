@@ -1,0 +1,105 @@
+---
+title: 'Local Deployment'
+description: 'How to deploy SPH on local machine'
+---
+
+<Note>
+  This documentation created based on Windows operating system. If you are using Linux / Mac OS to develop, please use another suitable applications for develoment process.
+</Note>
+
+## <Icon icon="list-check"  size={30}/> Prerequisite
+- Node 10 (lts/dubnium) _(10.24.1)_
+- MongoDB
+- MongoCompass _(or equivalent application to view MongoDB collections)_
+- MongoDB Tools _(to import data from backup into MongoDB database)_
+
+## <Icon icon="circle-play"  size={30}/> Getting Started
+- Install MongoDB.
+- Install MongoCompass and MongoDB Tools.
+
+## <Icon icon="Github" size={30}/> Clone SPH Github Project
+- Download project from Github. [SansPaper-Hub](https://github.com/SANS-PAPER/SansPaper-Hub).
+
+## <Icon icon="gears"  size={30}/> Configure Project SPH
+- Open `client` folder in your terminal of choice.
+- Make sure to use Node version `10.24.1`.
+- Install dependencies with command below.
+
+```sh
+npm install
+```
+
+- Next, open `server` folder in your terminal.
+Install dependencies with command below.
+
+```sh
+npm install
+```
+
+- Locate the crypto.js file, `SansPaper-Hub\server\middleware\crypto.js`.
+- Replace the lines as shown below. 
+- Change this line; 
+
+```js
+: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+```
+
+- to this value; 
+
+```js
+: [74, 141, 119, 123, 204, 66, 155, 189, 199, 117, 119, 55, 247, 197, 207, 74];
+```
+
+- Next, locate server.js file, `SansPaper-Hub\server\server.js`.
+- Add your own  MongoDB URL to below line;
+
+```js
+const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/sanspaperhub'; 
+```
+
+<Note>
+  Please be aware that changes made to `crypto.js` and `server.js` MUST NOT be pushed to git.
+</Note>
+
+## <Icon icon="gears"  size={30}/> Configure MongoDB Database
+- Download this zip file.
+- Extract it to your location of choice.
+- Go to the folder that contains the installed MongoDB tools and import the extracted file to MongoDB Compass with this command
+
+```sh 
+mongorestore -d sanspaperhub ${YOUR_EXTRACTED_FOLDER_PATH_HERE}
+```
+
+- Once done, open mongoDB compass and you should see the data.
+
+<img src="/images/mongodb-compass.png" />
+
+## <Icon icon="react"  size={30}/> Start the project
+- Open `client` folder in your terminal and run command below.
+
+```sh
+npm start
+```
+
+- Do not close the terminal.
+- Next open `server` folder in your terminal and run command below.
+
+```sh
+npm start
+```
+
+- The setup is done. You should see `localhost:8080/home` in your default browser opened.
+- To access the Admin Portal, go to `localhost:3000/login`.
+- Login with these credentials: 
+- Username : `admin@sanspaper.com`
+- Password: `9z#UMkUM`
+
+
+## Troubleshooting
+- If there is a firebase-admin error while running `npm start` on server, change the firebase-admin version line at server’s `package.json` file to below.
+
+```sh
+"firebase-admin": "^10.0.0",
+```
+
+- Next, re run the `npm install` command in `server` folder.

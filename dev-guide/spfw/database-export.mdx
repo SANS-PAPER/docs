@@ -1,0 +1,45 @@
+---
+title: 'Database Export'
+description: 'How to export sample PostgreSQL database from Staging Server'
+---
+
+## <Icon icon="list-check"  size={30}/> Prerequisite
+- Staging Database Access (Please ask Marcus or Gim for access)
+
+## Exporting The Database
+
+  ### Log in into API portal
+
+  - Login into portal at url [https://form-staging2.sanspaper.com/api/login](https://form-staging2.sanspaper.com/api/login).
+
+  ### Selecting The Database
+
+  - After successful login, navigate to 'Database' section on the left navbar.
+  - Select database on the top left navbar. 
+  - Choose `spi_db` for SPI database or `spf_db` for Sans-Paper-API database.
+  - Leave the next section after database name to default `public`.
+  - Next, click on the `Export` link below the section.
+
+  ### Set Export Values
+
+  - Output : `save`
+  - Format : `SQL`
+  - Database : `CREATE` , 'Routines' selected
+  - Tables : `DROP+CREATE` , 'Auto increment' not selected , 'Triggers' selected
+  - Data : `INSERT`
+
+  ### Choose tables and data
+
+    #### Database choice: spf_db
+    - Select all tables except `vw_field_properties_pivot`, `vw_field_property_option_answers` , `vw_field_property_option_choices` .
+    - Select all data.
+    - Click 'Export' button.
+
+    #### Database choice: spi_db
+    - Select all tables.
+    - Select all data.
+    - Click 'Export' button.
+
+## Result
+
+- On successful export, the filename for SPI and Sans-Paper-API database will be `spi_db.sql` and `spf_db.sql` respectively.
