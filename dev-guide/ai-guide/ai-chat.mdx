@@ -1,0 +1,49 @@
+---
+title: 'SansPaper AI Chat'
+description: 'Guides on setup and using Microsoft Azure AI Chat'
+---
+
+## Login on Microsoft Azure AI Foundry
+- Go to [Azure AI Foundry](https://ai.azure.com/).
+- Click on 'Login Options'.
+- Login as organization.
+- Use 'sanspapergroup.onmicrosoft.com' as organization name.
+
+## Using the API
+
+<Note>
+  The value `VITE_AZURE_OPENAI_URL` and `VITE_AZURE_OPENAI_API_KEY` are defined at .env file for frontend SPF Web project.
+</Note>
+
+- Azure AI Chat is used with CopilotKit plugin.
+- The plugin can be refered at here [CopilotKit](https://github.com/CopilotKit/CopilotKit).
+- Set the 'CopilotKit' version on the project `package.json` file. For example 
+
+```json
+    "@copilotkit/react-core": "0.37.0",
+    "@copilotkit/react-ui": "0.37.0",
+    "@copilotkit/react-textarea": "0.37.0",
+    "@copilotkit/shared": "0.37.0",
+```
+- Next, wrap the CopilotKit in your `App` using the code show below.
+
+```js
+<CopilotKit runtimeUrl={import.meta.env.VITE_AZURE_OPENAI_URL + '&api-key=' + import.meta.env.VITE_AZURE_OPENAI_API_KEY}>
+   <App />
+</CopilotKit>
+```
+- Next, import the `CopilotSidebar` to use the chat sidebar. Code sample as below.
+
+```js
+import { CopilotSidebar } from "@copilotkit/react-ui";
+
+<CopilotSidebar
+    labels={{
+        title: "SansPaperForm AI Chat",
+        initial: [
+            "Hi! 👋 Welcome to SansPaperForm AI Chat. We have added new feature `Chat-to-Action` functions.",
+            "Type 'list chat to action based on my role' to know more."]
+    }} >
+</CopilotSidebar>
+```
+

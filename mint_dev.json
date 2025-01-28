@@ -142,15 +142,6 @@
       "pages": [
         "dev-guide/spc/introduction"
       ]
-    },
-    {
-      "group": "AI & ML Guides",
-      "pages": [
-        "dev-guide/ai-guide/ai-vision",
-        "dev-guide/ai-guide/ai-chat",
-        "dev-guide/ai-guide/ai-dataAnalyze-chat",
-        "dev-guide/ai-guide/ai-import-files"
-      ]
     }
   ],
   "footerSocials": {
