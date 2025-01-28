@@ -1,0 +1,505 @@
+---
+title: 'SansPaper AI Vision'
+description: 'Guides on setup and using Microsoft Azure AI Vision'
+---
+
+## Login on Microsoft Azure AI Vision
+- Go to [Vision Studio](https://portal.vision.cognitive.azure.com/)
+- Click on 'Login Options'.
+- Login as organization.
+- Use 'sanspapergroup.onmicrosoft.com' as organization name.
+
+## Using the API
+
+<Note>
+  The value `VITE_AZURE_AI_VISION_URL` and `VITE_AZURE_AI_VISION_KEY` are defined at .env file for frontend SPF Web project.
+</Note>
+
+- Use this code to call the API
+
+```js
+let data = JSON.stringify({
+    "url": filename //url location of the image
+});
+    
+let config = {
+    headers: {  
+        'Content-Type': 'application/json', 
+        'Ocp-Apim-Subscription-Key': `${import.meta.env.VITE_AZURE_AI_VISION_KEY}`
+    }
+};
+
+const result : AxiosResponse = await axios.post(`${import.meta.env.VITE_AZURE_AI_VISION_URL}`, data, config); 
+```
+
+- Sample response will be in JSON format as below. 
+
+```json
+{
+    "modelVersion": "2023-10-01",
+    "captionResult": {
+        "text": "a credit card with numbers and symbols",
+        "confidence": 0.7725175023078918
+    },
+    "metadata": {
+        "width": 5000,
+        "height": 3500
+    },
+    "readResult": {
+        "blocks": [
+            {
+                "lines": [
+                    {
+                        "text": "Bank Name",
+                        "boundingPolygon": [
+                            {
+                                "x": 2372,
+                                "y": 546
+                            },
+                            {
+                                "x": 4530,
+                                "y": 546
+                            },
+                            {
+                                "x": 4530,
+                                "y": 864
+                            },
+                            {
+                                "x": 2372,
+                                "y": 866
+                            }
+                        ],
+                        "words": [
+                            {
+                                "text": "Bank",
+                                "boundingPolygon": [
+                                    {
+                                        "x": 2377,
+                                        "y": 552
+                                    },
+                                    {
+                                        "x": 3237,
+                                        "y": 547
+                                    },
+                                    {
+                                        "x": 3236,
+                                        "y": 866
+                                    },
+                                    {
+                                        "x": 2373,
+                                        "y": 866
+                                    }
+                                ],
+                                "confidence": 0.993
+                            },
+                            {
+                                "text": "Name",
+                                "boundingPolygon": [
+                                    {
+                                        "x": 3411,
+                                        "y": 547
+                                    },
+                                    {
+                                        "x": 4461,
+                                        "y": 550
+                                    },
+                                    {
+                                        "x": 4465,
+                                        "y": 866
+                                    },
+                                    {
+                                        "x": 3411,
+                                        "y": 866
+                                    }
+                                ],
+                                "confidence": 0.993
+                            }
+                        ]
+                    },
+                    {
+                        "text": "1234 5678 9876 5432",
+                        "boundingPolygon": [
+                            {
+                                "x": 574,
+                                "y": 1854
+                            },
+                            {
+                                "x": 4320,
+                                "y": 1854
+                            },
+                            {
+                                "x": 4320,
+                                "y": 2126
+                            },
+                            {
+                                "x": 574,
+                                "y": 2128
+                            }
+                        ],
+                        "words": [
+                            {
+                                "text": "1234",
+                                "boundingPolygon": [
+                                    {
+                                        "x": 579,
+                                        "y": 1862
+                                    },
+                                    {
+                                        "x": 1307,
+                                        "y": 1859
+                                    },
+                                    {
+                                        "x": 1304,
+                                        "y": 2128
+                                    },
+                                    {
+                                        "x": 575,
+                                        "y": 2127
+                                    }
+                                ],
+                                "confidence": 0.987
+                            },
+                            {
+                                "text": "5678",
+                                "boundingPolygon": [
+                                    {
+                                        "x": 1579,
+                                        "y": 1858
+                                    },
+                                    {
+                                        "x": 2307,
+                                        "y": 1856
+                                    },
+                                    {
+                                        "x": 2305,
+                                        "y": 2128
+                                    },
+                                    {
+                                        "x": 1577,
+                                        "y": 2128
+                                    }
+                                ],
+                                "confidence": 0.989
+                            },
+                            {
+                                "text": "9876",
+                                "boundingPolygon": [
+                                    {
+                                        "x": 2562,
+                                        "y": 1856
+                                    },
+                                    {
+                                        "x": 3271,
+                                        "y": 1855
+                                    },
+                                    {
+                                        "x": 3270,
+                                        "y": 2128
+                                    },
+                                    {
+                                        "x": 2560,
+                                        "y": 2128
+                                    }
+                                ],
+                                "confidence": 0.945
+                            },
+                            {
+                                "text": "5432",
+                                "boundingPolygon": [
+                                    {
+                                        "x": 3562,
+                                        "y": 1856
+                                    },
+                                    {
+                                        "x": 4289,
+                                        "y": 1856
+                                    },
+                                    {
+                                        "x": 4289,
+                                        "y": 2128
+                                    },
+                                    {
+                                        "x": 3561,
+                                        "y": 2128
+                                    }
+                                ],
+                                "confidence": 0.988
+                            }
+                        ]
+                    },
+                    {
+                        "text": "1234",
+                        "boundingPolygon": [
+                            {
+                                "x": 586,
+                                "y": 2196
+                            },
+                            {
+                                "x": 952,
+                                "y": 2194
+                            },
+                            {
+                                "x": 952,
+                                "y": 2336
+                            },
+                            {
+                                "x": 586,
+                                "y": 2336
+                            }
+                        ],
+                        "words": [
+                            {
+                                "text": "1234",
+                                "boundingPolygon": [
+                                    {
+                                        "x": 586,
+                                        "y": 2194
+                                    },
+                                    {
+                                        "x": 934,
+                                        "y": 2194
+                                    },
+                                    {
+                                        "x": 934,
+                                        "y": 2335
+                                    },
+                                    {
+                                        "x": 586,
+                                        "y": 2336
+                                    }
+                                ],
+                                "confidence": 0.993
+                            }
+                        ]
+                    },
+                    {
+                        "text": "MONTH/YEAR",
+                        "boundingPolygon": [
+                            {
+                                "x": 2228,
+                                "y": 2264
+                            },
+                            {
+                                "x": 2808,
+                                "y": 2264
+                            },
+                            {
+                                "x": 2808,
+                                "y": 2352
+                            },
+                            {
+                                "x": 2228,
+                                "y": 2352
+                            }
+                        ],
+                        "words": [
+                            {
+                                "text": "MONTH/YEAR",
+                                "boundingPolygon": [
+                                    {
+                                        "x": 2229,
+                                        "y": 2264
+                                    },
+                                    {
+                                        "x": 2794,
+                                        "y": 2266
+                                    },
+                                    {
+                                        "x": 2794,
+                                        "y": 2353
+                                    },
+                                    {
+                                        "x": 2229,
+                                        "y": 2354
+                                    }
+                                ],
+                                "confidence": 0.994
+                            }
+                        ]
+                    },
+                    {
+                        "text": "VALID",
+                        "boundingPolygon": [
+                            {
+                                "x": 1698,
+                                "y": 2380
+                            },
+                            {
+                                "x": 1960,
+                                "y": 2380
+                            },
+                            {
+                                "x": 1960,
+                                "y": 2464
+                            },
+                            {
+                                "x": 1696,
+                                "y": 2462
+                            }
+                        ],
+                        "words": [
+                            {
+                                "text": "VALID",
+                                "boundingPolygon": [
+                                    {
+                                        "x": 1700,
+                                        "y": 2380
+                                    },
+                                    {
+                                        "x": 1934,
+                                        "y": 2382
+                                    },
+                                    {
+                                        "x": 1931,
+                                        "y": 2465
+                                    },
+                                    {
+                                        "x": 1697,
+                                        "y": 2461
+                                    }
+                                ],
+                                "confidence": 0.993
+                            }
+                        ]
+                    },
+                    {
+                        "text": "12/99",
+                        "boundingPolygon": [
+                            {
+                                "x": 2142,
+                                "y": 2370
+                            },
+                            {
+                                "x": 2924,
+                                "y": 2364
+                            },
+                            {
+                                "x": 2926,
+                                "y": 2570
+                            },
+                            {
+                                "x": 2142,
+                                "y": 2578
+                            }
+                        ],
+                        "words": [
+                            {
+                                "text": "12/99",
+                                "boundingPolygon": [
+                                    {
+                                        "x": 2147,
+                                        "y": 2371
+                                    },
+                                    {
+                                        "x": 2897,
+                                        "y": 2364
+                                    },
+                                    {
+                                        "x": 2897,
+                                        "y": 2575
+                                    },
+                                    {
+                                        "x": 2143,
+                                        "y": 2578
+                                    }
+                                ],
+                                "confidence": 0.953
+                            }
+                        ]
+                    },
+                    {
+                        "text": "THRU",
+                        "boundingPolygon": [
+                            {
+                                "x": 1692,
+                                "y": 2458
+                            },
+                            {
+                                "x": 1950,
+                                "y": 2456
+                            },
+                            {
+                                "x": 1950,
+                                "y": 2544
+                            },
+                            {
+                                "x": 1692,
+                                "y": 2544
+                            }
+                        ],
+                        "words": [
+                            {
+                                "text": "THRU",
+                                "boundingPolygon": [
+                                    {
+                                        "x": 1698,
+                                        "y": 2456
+                                    },
+                                    {
+                                        "x": 1925,
+                                        "y": 2456
+                                    },
+                                    {
+                                        "x": 1925,
+                                        "y": 2543
+                                    },
+                                    {
+                                        "x": 1698,
+                                        "y": 2544
+                                    }
+                                ],
+                                "confidence": 0.989
+                            }
+                        ]
+                    },
+                    {
+                        "text": "CARDHOLDER",
+                        "boundingPolygon": [
+                            {
+                                "x": 586,
+                                "y": 2760
+                            },
+                            {
+                                "x": 2166,
+                                "y": 2758
+                            },
+                            {
+                                "x": 2166,
+                                "y": 2964
+                            },
+                            {
+                                "x": 586,
+                                "y": 2966
+                            }
+                        ],
+                        "words": [
+                            {
+                                "text": "CARDHOLDER",
+                                "boundingPolygon": [
+                                    {
+                                        "x": 588,
+                                        "y": 2765
+                                    },
+                                    {
+                                        "x": 2105,
+                                        "y": 2759
+                                    },
+                                    {
+                                        "x": 2102,
+                                        "y": 2966
+                                    },
+                                    {
+                                        "x": 588,
+                                        "y": 2965
+                                    }
+                                ],
+                                "confidence": 0.993
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+} 
+```

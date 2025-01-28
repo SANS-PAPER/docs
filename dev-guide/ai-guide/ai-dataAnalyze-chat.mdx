@@ -1,0 +1,84 @@
+---
+title: 'SansPaper AI Data Analyze'
+description: 'Guides on setup and using Microsoft Azure AI Chat with provided documents as data references'
+---
+
+## Login on Microsoft Azure AI Foundry
+- Go to [Azure AI Foundry](https://ai.azure.com/)
+- Click on 'Login Options'.
+- Login as organization.
+- Use 'sanspapergroup.onmicrosoft.com' as organization name.
+
+## Using the API
+
+<Note>
+  The value `VITE_AZURE_OPENAI_URL`, `VITE_AZURE_OPENAI_API_KEY`, `VITE_AZURE_SEARCH_URL`, `VITE_AZURE_SEARCH_KEY`, `VITE_AZURE_SEARCH_INDEX`, `VITE_AZURE_SEARCH_AUTH_KEY`, `VITE_AZURE_EMBED_URL`, `VITE_AZURE_EMBED_AUTH_KEY` are defined at .env file for frontend SPF Web project.
+</Note>
+
+- Azure AI Analyze Chat is used with CopilotKit plugin.
+- The plugin can be refered at here [CopilotKit](https://github.com/CopilotKit/CopilotKit).
+- Set the 'CopilotKit' version on the project `package.json` file. For example 
+
+```json
+    "@copilotkit/react-core": "0.37.0",
+    "@copilotkit/react-ui": "0.37.0",
+    "@copilotkit/react-textarea": "0.37.0",
+    "@copilotkit/shared": "0.37.0",
+```
+- Next, set another 'CopilotKit' instance with the new Azure AI setting. 
+
+```js
+<CopilotKit
+    body={
+        {
+        'azureSearchEndpoint': import.meta.env.VITE_AZURE_SEARCH_URL,
+        'azureSearchKey': import.meta.env.VITE_AZURE_SEARCH_KEY,
+        'azureSearchIndexName': import.meta.env.VITE_AZURE_SEARCH_INDEX,
+        'data_sources': [
+            {
+                "type": "azure_search",
+                "parameters": {
+                    "filter": null,
+                    "endpoint": import.meta.env.VITE_AZURE_SEARCH_URL,
+                    "index_name": import.meta.env.VITE_AZURE_SEARCH_INDEX,
+                    "semantic_configuration": "azureml-default",
+                "authentication": {
+                    "type": "api_key",
+                    "key": import.meta.env.VITE_AZURE_SEARCH_AUTH_KEY
+                },
+                "embedding_dependency": {
+                    "type": "endpoint",
+                    "endpoint": import.meta.env.VITE_AZURE_EMBED_URL,
+                    "authentication": {
+                        "type": "api_key",
+                        "key": import.meta.env.VITE_AZURE_EMBED_AUTH_KEY
+                    }
+                },
+                "query_type": "vector_simple_hybrid",
+                "in_scope": true,
+                "role_information": "You are an AI assistant that helps people find information.",
+                "strictness": 4,
+                "top_n_documents": 100,
+                "key": import.meta.env.VITE_AZURE_SEARCH_KEY,
+                "indexName": import.meta.env.VITE_AZURE_SEARCH_INDEX
+                }
+            }
+        ]
+        }
+    }
+    runtimeUrl={import.meta.env.VITE_AZURE_OPENAI_URL + '&api-key=' + import.meta.env.VITE_AZURE_OPENAI_API_KEY}>
+    <CopilotSidebar
+        icons={
+            {
+                openIcon: <FaRobot size="35px" />,
+            }}
+            labels={{
+                title: "SansPaperForm AI Inference Chat",
+                initial: [
+                "Hi! 👋 Welcome to SansPaperForm AI Inference Chat.",
+                "This chat will help you to find information based on data imported in the AI model."]
+            }} >
+    </CopilotSidebar>
+</CopilotKit>
+```
+
