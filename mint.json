@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Sans Paper Documentation and Guides",
   "logo": {
     "dark": "/logo/splogo.png",
     "light": "/logo/splogo.png"
@@ -128,7 +128,10 @@
     {
       "group": "Sans Paper Pilot",
       "pages": [
-        "dev-guide/spp/introduction"
+        "dev-guide/spp/deploy-local",
+        "dev-guide/spp/deploy-production",
+        "dev-guide/spp/add-graphile",
+        "dev-guide/spp/troubleshooting"
       ]
     },
     {
@@ -149,7 +152,8 @@
         "dev-guide/ai-guide/ai-vision",
         "dev-guide/ai-guide/ai-chat",
         "dev-guide/ai-guide/ai-dataAnalyze-chat",
-        "dev-guide/ai-guide/ai-import-files"
+        "dev-guide/ai-guide/ai-import-files",
+        "dev-guide/ai-guide/ai-gemini-image"
       ]
     }
   ],

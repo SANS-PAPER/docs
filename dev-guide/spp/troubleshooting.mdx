@@ -1,0 +1,41 @@
+---
+title: 'Troubleshooting'
+description: 'Troubleshooting issues on SP Pilot'
+---
+
+## Image From Other URLs Is Not Displayed
+
+- This error happen because of domain restriction of Next.js environment.
+- To solve this, add the domain name in the file `next.config.mjs` under the section images.
+
+```js
+images: {
+    domains: [
+      'lh3.googleusercontent.com',
+      's.gravatar.com',
+      'cdn.auth0.com',
+      'static.vecteezy.com',
+      'icons.iconarchive.com',
+      'media.licdn.com',
+      'form-staging2.sanspaper.com',
+      'form.sanspaper.com',
+      'spf-assets-aus.syd1.digitaloceanspaces.com',
+      'sanspaperform-images.nyc3.digitaloceanspaces.com' // add new domain for images here
+    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 's.gravatar.com',
+        port: '',
+        pathname: '/avatar/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.auth0.com',
+        port: '',
+        pathname: '/avatars/**',
+      },
+    ],
+  }
+```
+

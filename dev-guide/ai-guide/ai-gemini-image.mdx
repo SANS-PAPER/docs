@@ -1,0 +1,95 @@
+---
+title: 'AI Image Autofill Forms'
+description: 'Guides on setup and using Google Gemini for form autofill'
+---
+
+## Login on Google AI Studio
+- Login Google account.
+- Go to [Google AI Studio](https://aistudio.google.com/).
+
+## Get Google AI Studio API Key
+- On top left of the AI Studio portal, click the `Get API key` button to generate a key for development use.
+
+<Note>
+  For production usage, the key is located at `VITE_GOOGLE_GEMINI_API_KEY` inside respective project's .env file.
+</Note>
+
+## How to Use the Google API 
+- Import the Google Generative AI plugin using `package.json` file. Sample code as below.
+
+```json
+"@google/generative-ai": "0.21.0"
+```
+- Re install the dependencies of the project to add the generative ai plugin.
+- Import the plugin on the required page.
+
+```js
+import { GoogleGenerativeAI } from '@google/generative-ai';
+```
+
+- Create a new model with the key.
+
+```js
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+```
+
+- Set a sample prompt. Next, fetch the image into buffer and use the API to analyze the image.
+
+```js
+// sample form_fields
+let form_fields = [
+    {field_index:0, field_name:"Image of Card", field_type:"image"},
+    {field_index:1, field_name:"Card Name", field_type:"textbox"},
+    {field_index:2, field_name:"Card number", field_type:"textbox"}
+];
+
+// field_index is the location of image field
+let field_index = 0;
+
+// Set sample prompt
+var prompt_1 = "This is all the fields of the form user is submitting. ";
+var prompt_2 = ". The form name and description are Card Form and Details of a card respectively. ";
+var prompt_3 = "User uploaded the image at object index "+ field_index +". ";
+var prompt_4 = "Analyze the image. Try fill the fields based on the analyzed image. Return in JSON format. Example [{field_index:1, suggested_answer:John},{field_index:2, suggested_answer:123-456-7890}]";
+
+var combinedPrompt = prompt_1 + JSON.stringify(form_fields) + prompt_2 + prompt_3 + prompt_4;
+
+// Get the image uploaded by the user from Digital Ocean space in a buffer
+let filename = "https://spf-assets-aus.syd1.digitaloceanspaces.com/some-image.jpg";
+
+const imageResp = await fetch(filename).then((response) => response.arrayBuffer());
+
+// Call the api while passing in prompt and image data buffer
+const result = await model.generateContent([
+      {
+        inlineData: {
+          data: Buffer.from(imageResp).toString("base64"),
+          mimeType: "image/jpeg",
+        },
+      },
+      combinedPrompt,
+]);
+
+// Remove trailing json defined text in AI responses
+let cleanedStr = result.response.text().replace('```json', '').replace('```', '');
+
+// Parse the answer into json format
+let aiAnswer = JSON.parse(cleanedStr);
+```
+
+- The final results will be AI suggested answers in an array of objects. Sample as below.
+
+```js
+[
+    {field_index:1, suggested_answer:"John"},
+    {field_index:2, suggested_answer:"123-456-7890"}
+]
+```
+
+- Next, create a function to use the API results to fill in the forms where applicable.
+
+<Note>
+  This function is to be made by developers themselves, which will take the array values and populate the answers automatically in the form without user input.
+</Note>
+
