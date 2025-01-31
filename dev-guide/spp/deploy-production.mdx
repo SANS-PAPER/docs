@@ -1,0 +1,52 @@
+---
+title: 'Production Server Deployment'
+description: 'How to deploy SP Pilot to Production Server'
+---
+
+<Note>
+  Before deployment to any server, please make sure that the current build is successful without any error on your own local machine.
+</Note>
+
+## <Icon icon="list-check"  size={30}/> Prerequisite
+- Terminal SSH client (Putty or any equivalent app)
+- Production Server SSH Access (Please ask Marcus of Gim for server access)
+
+<Note>
+  Current Production Server IP Address: 170.64.147.76
+</Note>
+
+## <Icon icon="react"  size={30}/> Deploying SansPaper Pilot
+- Go to the project directory.
+
+```sh
+cd /var/www/pilot.sanspaper.com/
+```
+
+- Update the code in the server to match the latest main branch.
+
+```sh
+git pull origin main
+```
+
+- Next, run install to update the dependencies if any.
+
+```sh
+yarn install
+```
+
+- Next run build command to create new build.
+
+```sh
+yarn build
+```
+
+- Restart the app server to update the latest build
+
+```sh
+pm2 restart all
+```
+
+## <Icon icon="eye"  size={30}/> Accessing the project 
+
+- To open the production SansPaper Pilot, use this url [Sans Paper Pilot](http://pilot.sanspaper.com/).
+

@@ -1,0 +1,33 @@
+---
+title: 'Add New PostGraphile API'
+description: 'Sans Paper Pilot adding new API to connect with backend'
+---
+
+## Add the API
+- Add new GraphQL query inside a new file in folder `SansPaper-Pilot/src/graphql/queries`.
+- Open the file `SansPaper-Pilot/codegen.ts`. Update new Bearer token in Authorization config section.
+
+<Note>
+  To get the Bearer token, inspect an API call on browser, and check on the 'Authorization' section in Request Headers.
+</Note>
+
+- Open a terminal. Navigate to the `SansPaper-Pilot` folder.
+- Run this command.
+
+```sh
+npx graphql-code-generator --config codegen.ts
+```
+
+- Make sure the command finished successfully without any error.
+- New API is added. Check the details at the bottom of file `SansPaper-Pilot/src/gql/_generated.ts`.
+- If the file `_generated.ts` has error, comment below line of code inside the file.
+
+```ts
+import { RequestInit } from 'graphql-request/dist/types.dom'; //comment this line
+```
+
+## Test the New API
+- Open the backend portal [Staging API](https://form-staging2.sanspaper.com/api/login).
+- Login the portal.
+- Click on the `Playground` section in the left navbar.
+- Test the new API on Graphiql.
