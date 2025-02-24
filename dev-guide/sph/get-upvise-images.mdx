@@ -1,0 +1,62 @@
+---
+title: 'Get Upvise Images List'
+description: 'How to download Upvise images list on browser'
+---
+
+## Getting Started
+- Using Chrome browser, login into Upvise website at [Upvise](https://s3.upvise.com/).
+- Right click anywhere on the page, and choose `Inspect` at the bottom of the menu.
+- The Inspect mini window of Chrome browser should open.
+
+## Get the Upvise Database Name
+- Navigate to `Application` tab on the Inspect mini window.
+- Click the arrow button on the `IndexedDB` at `Storage` section.
+- You should see the Upvise database name. For example, `upvise.123456`.
+- On the next section, you should rename the value `theDBName` to your Upvise database name.
+
+## Run Custom Scripts 
+- Navigate to `Console` tab on the Inspect mini window.
+- Copy below code **EACH LINE ONE BY ONE**, paste and press Enter on the Console tab. 
+- Remember to replace the value `theDBName` to your Upvise database name.
+
+```js
+script1 = document.createElement('script');
+
+script1.src = 'https://unpkg.com/dexie@3.2.2';
+
+document.body.appendChild(script1);
+
+script2 = document.createElement('script');
+
+script2.src = 'https://unpkg.com/dexie-export-import@1.0.3';
+
+document.body.appendChild(script2);
+
+theDBName = 'upvise.123456';
+
+theDB = new Dexie(theDBName);
+
+let {verno, tables} = await theDB.open();
+
+theDB.close();
+
+theDB = new Dexie(theDBName);
+
+theDB.version(verno).stores(tables.reduce((p,c) => {p[c.name] = c.schema.primKey.keyPath || ""; return p;}, {}));
+
+theBlob = await theDB.export({prettyJson: false, filter: (table, value, key) => table === 'tables' && key === 'system.files'});
+
+document.body.innerHTML = ` <a href="${URL.createObjectURL(theBlob)}">Right-click to download database export</a>`;
+
+```
+
+## Saving the Exported Upvise Database
+- After running all the custom scripts on the `Console` tab, a link shall appear on the page.
+- Right click on the link, and choose `Save link as` option.
+- Next, rename the file to your company name. 
+
+<Note>
+  Your filename should not contains any spaces, replace space with dash. Change all letters to lowercase letters. And the name should not have any other special characters. 
+</Note>
+
+

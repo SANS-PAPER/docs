@@ -137,7 +137,8 @@
     {
       "group": "Sans Paper Hub",
       "pages": [
-        "dev-guide/sph/deploy-local"
+        "dev-guide/sph/deploy-local",
+        "dev-guide/sph/get-upvise-images"
       ]
     },
     {
