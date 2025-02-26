@@ -138,7 +138,8 @@
       "group": "Sans Paper Hub",
       "pages": [
         "dev-guide/sph/deploy-local",
-        "dev-guide/sph/get-upvise-images"
+        "dev-guide/sph/get-upvise-images",
+        "dev-guide/sph/upgrade-node"
       ]
     },
     {
