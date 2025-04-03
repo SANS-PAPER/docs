@@ -1,0 +1,83 @@
+---
+title: 'Upgrade node v10 to node v20'
+description: 'Steps by Steps to upgrade old node to latest stable node'
+---
+
+<Note>
+  This documentation created based on Windows operating system. If you are using Linux / Mac OS to develop, please use another suitable applications for develoment process.
+</Note>
+
+## <Icon icon="list-check"  size={30}/> Prerequisite
+- Node v20 or latest _(20.18.3)_
+
+## <Icon icon="folder-closed"  size={30}/> Backup Your Project
+- Before starting, make sure to backup your project, including your node_modules and package-lock.json (if applicable), just in case you need to revert any changes.
+
+## <Icon icon="circle-check"  size={30}/> Check Node.js Compatibility
+- Review Dependencies: Check the compatibility of your project dependencies with Node.js v20. Some older packages may not be compatible with v20, and you may need to upgrade or replace them.
+- Visit the Node.js official changelog to review breaking changes and deprecations between versions.
+
+## <Icon icon="circle-play"  size={30}/> Getting Started
+- Install node v20 or above from node official site [Node Official Site](https://nodejs.org/en/download).
+- If you are using nvm (Node Version Manager), you can switch Node.js versions easily.
+- Install nvm (if not already installed):
+
+```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+```
+
+- Install Node.js v20:
+
+```sh
+nvm install 20
+```
+
+- Use Node.js v20:
+
+```sh
+nvm use 20
+```
+
+## <Icon icon="trash-can" size={30}/> Clear Existing node_modules
+- After upgrading Node.js, remove the node_modules directory and reinstall your project dependencies. 
+- This ensures that all packages are compiled for the correct Node.js version.
+
+<Note>
+  This step should be applied for every folder that contains package.json. In this project, you should apply it to root, client and server folder.
+</Note>
+
+```sh
+rm -rf node_modules
+rm package-lock.json  # If you're using npm, or yarn.lock for Yarn
+npm install           # Or yarn install if you're using Yarn
+```
+
+## <Icon icon="gears"  size={30}/> Update Project Dependencies
+- Update Dependencies: You need to update your project's dependencies to their latest versions compatible with Node.js v20.
+
+```sh
+npm outdated  # To see outdated packages
+npm update    # To update minor/patch versions
+```
+
+- If some packages require major updates, you'll need to check their changelogs for breaking changes and migrate accordingly.
+- Check for Deprecated Packages: Some packages might be deprecated or have better alternatives. Check for such packages and update them.
+
+## <Icon icon="gears"  size={30}/> Test Your Application
+- After upgrading Node.js and updating your dependencies:
+  1. Run Tests: If you have automated tests, run them to ensure everything works as expected.
+
+```sh 
+npm test
+```
+
+  2. Manual Testing: Manually test the key functionalities of your application (especially Express routes and middleware) to check for any issues.
+
+## <Icon icon="react"  size={30}/> Address Breaking Changes
+- If your application has compatibility issues after upgrading Node.js, review the breaking changes in the Node.js v20 release notes and address any deprecations or errors.
+
+## <Icon icon="react"  size={30}/> Re-deploy Your Application
+- Once the upgrade is complete and everything is working locally, deploy your updated Express.js application to your production environment.
+- Monitor Logs: After deployment, monitor the application logs for any unexpected errors or warnings.
+
+After following these steps, your Express.js project should be successfully upgraded to Node.js v20!
