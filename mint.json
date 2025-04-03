@@ -26,14 +26,6 @@
     "url": "https://dashboard.mintlify.com"
   },
   "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    },
-    {
-      "name": "Developers Guide",
-      "url": "dev-guide"
-    }
   ],
   "anchors": [
     {
@@ -69,92 +61,6 @@
         "release-notes/spc",
         "release-notes/sph",
         "release-notes/spp"
-      ]
-    },
-    {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
-      ]
-    },
-    {
-      "group": "Sans Paper Form Web",
-      "pages": [
-        "dev-guide/spfw/deploy-local",
-        "dev-guide/spfw/deploy-staging",
-        "dev-guide/spfw/deploy-production",
-        "dev-guide/spfw/database-import",
-        "dev-guide/spfw/database-export",
-        "dev-guide/spfw/troubleshooting"
-      ]
-    },
-    {
-      "group": "Sans Paper Form Mobile",
-      "pages": [
-        "dev-guide/spfm/introduction"
-      ]
-    },
-    {
-      "group": "Sans Paper ID Web",
-      "pages": [
-        "dev-guide/spiw/introduction"
-      ]
-    },
-    {
-      "group": "Sans Paper ID Mobile",
-      "pages": [
-        "dev-guide/spim/introduction"
-      ]
-    },
-    {
-      "group": "Sans Paper Pilot",
-      "pages": [
-        "dev-guide/spp/deploy-local",
-        "dev-guide/spp/deploy-production",
-        "dev-guide/spp/add-graphile",
-        "dev-guide/spp/troubleshooting"
-      ]
-    },
-    {
-      "group": "Sans Paper Hub",
-      "pages": [
-        "dev-guide/sph/deploy-local",
-        "dev-guide/sph/get-upvise-images"
-      ]
-    },
-    {
-      "group": "Sans Paper Connect",
-      "pages": [
-        "dev-guide/spc/introduction"
-      ]
-    },
-    {
-      "group": "AI & ML Guides",
-      "pages": [
-        "dev-guide/ai-guide/ai-vision",
-        "dev-guide/ai-guide/ai-chat",
-        "dev-guide/ai-guide/ai-dataAnalyze-chat",
-        "dev-guide/ai-guide/ai-import-files",
-        "dev-guide/ai-guide/ai-gemini-image"
       ]
     }
   ],
