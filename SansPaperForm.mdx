@@ -25,59 +25,57 @@ Follow these steps to install :
 2. Create an account or log in with your existing credentials.
 
 ---
-## Mobile
 
-### Quick Start
+# Features Overview
 The app consists of three main screens: **Profile**, **Forms**, and **History**.
 
-#### Profile
+### Profile
 This section displays your name, the current app version, and provides key functionalities such as:
 - Sending invites
+- Switch organization
+- Switch role
+- Switch team
 - Accessing the privacy policy
 - Logging out
 
-#### Forms
-In this tab, you will find:
-- Forms you have created and own
-- Forms shared with you by other organizations
-
-This section allows you to efficiently manage and access your forms.
-
-#### History
-The History tab keeps track of all your submitted forms. If you have a **Manager** or **Admin** role, you will also see:
-- **Approve** and **Reject** buttons to take action on submitted forms
-
-This streamlined navigation ensures a smooth user experience, making it easy to manage profiles, forms, and submissions efficiently.
+### Forms
+The **Forms** module in the Sans Paper Form system enables users to create, manage, submit, and export forms across various roles and platforms (web and mobile). This module is crucial for collecting structured data, ensuring compliance, and maintaining organization-level workflows.
 
 
----
+<img
+  className="block dark:block"
+  src="/images/FormView.png"
+  alt="Hero Light"
+/>
 
-### Features Overview
+#### 🔍 What Users Can Do
 
-### 🎨 Roles
-The app supports **three roles**:
+- **View Available Forms**  
+  All forms available for the logged-in user should be displayed in the Form tab.
+
+- **Submit Forms**  
+  - User can fill and submit answers to forms.
+  - A success popup is shown after submission.
+  - Redirects back to the form overview screen.
+
+- **Save Forms as Draft**  
+  - User can save partially filled forms.
+  - Drafts can be edited and re-saved or submitted.
+
+- **Edit Draft Forms**  
+  - Drafts are editable.
+  - On submission, the draft version is removed.
+
+#### 🔐 Roles & Permissions
+
+| Role            | Can Submit | Can View | Can Resubmit | Can Approve | Can Decline | Can Delete |
+|-----------------|------------|----------|--------------|-------------|-------------|------------|
+| **Admin**       | ✅         | ✅       | ✅           | ✅          | ✅          | ✅         |
+| **Manager**     | ✅         | ✅       | ✅           | ✅          | ✅          | ✅         |
+| **Standard User**| ✅        | ✅       | ❌           | ❌          | ❌          | ❌         |
 
 
-- **Admin**: Full access to manage forms.
-- **Manager**: Full access to manage forms
-- **Guest**: To submit and edit form only.
-
-
----
-
-### 🌟 Features
-
-
-
-#### 👤 **Profile**
-- Can see profile details
-- Can see latest updated version
-- Send Invite : Can invite user to your organization. to in
-
-
-
-#### 📜 **Forms**
-#### **How to Create a Subform**
+#### 📜 How to Create a Subform
 
 Follow these steps to set up a subform:
 
@@ -111,6 +109,65 @@ Follow these steps to set up a subform:
 **Note:** If the subform is not submitted, the first form will not be submitted either.
 
 
+---
+
+### History
+The **History** screen allows users to view, manage, and interact with forms they have either submitted or saved as drafts.
+
+#### 🔍 What users can do
+
+- Users can **view a list of forms** they have either:
+  - **Submitted** (read-only)
+  - **Saved as drafts** (editable)
+
+- Forms are displayed in **descending order** (most recent first)
+
+- If no forms are present (submitted or drafts), a **placeholder UI** is shown:
+  - E.g., "You have no form submitted here yet."
+
+- Users can **filter** between:
+  - Submitted forms
+  - Draft forms
+
+- Users can **search forms** by:
+  - Title
+  - Date
+  - Status (draft/submitted)
+
+- Users can **edit draft forms**
+  - Drafts can be resubmitted or updated
+
+- Users can **view submitted forms**
+  - Submitted forms are **read-only** and cannot be modified
+
+- Users can **export submitted forms** (Web Only)
+  - Formats: PDF (optionally CSV/Excel in future)
+
+- Users can **sort forms**
+  - Sort by: Name, Date
+  - Order: ASC / DESC
+
+- Users can **load more** forms as they scroll
+
+---
+
+#### 🔐 Roles & Permissions
+
+All user roles can:
+
+| Action               | Admin | Manager | Standard User |
+|----------------------|:-----:|:-------:|:-------------:|
+| View submitted forms | ✅    | ✅      | ✅            |
+| Edit draft forms     | ✅    | ✅      | ✅            |
+| Delete draft forms   | ✅    | ✅      | ✅            |
+| Export submitted     | ✅    | ✅      | ✅            |
+
+---
+
+#### ℹ️ Notes
+
+- Submitting a draft **removes it from the draft list** and adds it to submitted
+- Deleting a draft prompts a confirmation to prevent accidental loss.
 
 ---
 
