@@ -1,0 +1,63 @@
+---
+title: 'SansPaper ID Mobile'
+description: 'All user testing for SansPaper ID mobile'
+---
+
+## 🚀 Testing Release 14th May 2025
+- Android (1189)
+- iOS (55)
+
+### 🔹 Teaser Screen  
+#### 🧪 What's new
+- Displayed during app startup
+- An introductory screen highlighting top-rated users  
+<div style={{ textAlign: 'center' }}>
+  <img
+    src="/images/teaser.jpg"
+    alt="Teaser"
+    style={{ width: '300px', height: 'auto', display: 'block', margin: '0 auto' }}
+  />
+   <img
+    src="/images/topRated.jpg"
+    alt="Top Rated"
+    style={{ width: '300px', height: 'auto', display: 'block', margin: '0 auto' }}
+  />
+</div>
+
+### 🔹 Onboarding Screen  
+#### 🧪 What's new
+- Before displaying the user's profile, the app will check if there are any incomplete details.
+- If the profile information is incomplete, the user will be shown the onboarding process.
+- This serves as a Profile completion tracker . 
+- AI-generated professional summaries to help users build a strong bio quickly . Users can click on 'Generate with AI' to generate their summary.
+- Prompts that encourage full profile completion for better visibility  
+<div style={{ textAlign: 'center' }}>
+  <img
+    src="/images/on1.jpg"
+    alt="On1"
+    style={{ width: '300px', height: 'auto', display: 'block', margin: '0 auto' }}
+  />
+    <img
+    src="/images/on2.jpg"
+    alt="On2"
+    style={{ width: '300px', height: 'auto', display: 'block', margin: '0 auto' }}
+  />
+</div>
+
+### 🔹 EV Station
+#### 🧪 What's new
+- Navigate to **Map** tab
+- Map screen will display electric vehicle station data retrieved from **eHound** on an interactive map
+- Allows filtering of stations based on state (Not yet implemented, will be available in next release)
+- Only EV station data for Australia is available at the moment, and it's visible globally.
+<div style={{ textAlign: 'center' }}>
+  <img
+    src="/images/evStation.jpg"
+    alt="EV Station"
+    style={{ width: '300px', height: 'auto', display: 'block', margin: '0 auto' }}
+  />
+</div>
+
+
+### 🔹 Theme Fixes
+- Explicitly set the text color on Android to prevent it from being overridden by the system's dark theme. Since we haven’t implemented dark/light theme support at the app level yet, this serves as a temporary fix

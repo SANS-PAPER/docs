@@ -62,6 +62,15 @@
         "release-notes/sph",
         "release-notes/spp"
       ]
+    },
+    
+    {
+      "group": "User Testing",
+      "pages": [
+        "user-testing/spf",
+        "user-testing/spi"
+  
+      ]
     }
   ],
   "footerSocials": {
