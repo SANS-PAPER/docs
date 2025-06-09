@@ -1,4 +1,85 @@
 ---
-title: 'SansPaper Form'
-description: 'All user testing for SansPaper Form Web'
+title: 'SansPaper Form Mobile'
+description: 'All user testing for SansPaper Form Mobile'
 ---
+
+## 🚀 Testing Release 10th June 2025
+- Android (1221)
+- iOS (745)
+
+### 🔹 Multiple Subform 
+#### 🧪 What's new
+The form system now supports **multiple subforms**. This enhancement allows dynamic subform generation based on user input.
+
+#### 🧪 How to test it
+
+1. **Select a main form** and begin entering data.
+2. When you input specific values, a **popup** may appear indicating that a related subform must be filled.
+3. If the main form has **multiple subforms**, additional popups will appear for each triggered condition.
+4. Upon submitting the main form, any triggered subforms will be automatically saved as **drafts**.
+
+<div style={{
+  display: 'flex',
+  gap: '16px',
+  justifyContent: 'center',
+  flexWrap: 'nowrap',
+  overflowX: 'auto',
+  padding: '8px'
+}}>
+  <img
+    src="/images/parentForm.png"
+    alt="Parent Form"
+    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+  />
+  <img
+    src="/images/triggerSubform.png"
+    alt="Trigger Subform"
+    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+  />
+  <img
+    src="/images/SubformSaved.png"
+    alt="Subform Saved"
+    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+  />
+</div>
+
+> **Note:** Draft status is only visible on the **Manager** side. It indicates that subforms are pending completion.
+
+#### Guest User Experience
+
+- If a subform is assigned to a **guest user**, they will complete it like a regular form without seeing the draft label.
+
+#### Reviewing Subforms
+
+After daily submissions are completed:
+
+1. Go to the **History** screen.
+2. Click **View Details** for any main form entry.
+3. All associated subforms will be listed below.
+4. Each subform will have a **View** button. Click it to see the submitted data.
+5. If multiple subforms exist, each will be listed separately with its own View button.
+
+<div style={{
+  display: 'flex',
+  gap: '16px',
+  justifyContent: 'center',
+  flexWrap: 'nowrap',
+  overflowX: 'auto',
+  padding: '8px'
+}}>
+  <img
+    src="/images/SubformSaved.png"
+    alt="Parent Form"
+    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+  />
+  <img
+    src="/images/ViewDetails.png"
+    alt="Trigger Subform"
+    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+  />
+  <img
+    src="/images/UserSubmittedSB.png"
+    alt="Subform Saved"
+    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+  />
+</div>

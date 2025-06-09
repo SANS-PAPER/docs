@@ -65,6 +65,7 @@
       "group": "Release Notes",
       "pages": [
         "release-notes/spf",
+        "release-notes/spfm",
         "release-notes/spi",
         "release-notes/spc",
         "release-notes/sph",
