@@ -1,22 +1,76 @@
 ---
-title: 'SansPaper Form Mobile'
-description: 'All user testing for SansPaper Form Mobile'
+title: "SansPaper Form Mobile"
+description: "All user testing for SansPaper Form Mobile"
 ---
 
-## 🚀 Testing Release 10th June 2025
-- Android (1221)
-- iOS (745)
+## 🚀 Testing Release 20th June 2025
 
-### 🔹 Multiple Subform 
+- Android (1221)
+- iOS (747)
+
+### 🔹 PhotoAi Component
+
 #### 🧪 What's new
-The form system now supports **multiple subforms**. This enhancement allows dynamic subform generation based on user input.
+
+Introducing the **PhotoAi Component**, a new AI-powered element that extracts data from uploaded images and automatically fills in the corresponding form fields. Unlike the regular photo component, this version supports multiple image uploads and intelligently matches extracted data to the most suitable input fields.
+
+<div
+  style={{
+    backgroundColor: "#E3F2FD",
+    borderLeft: "5px solid #2196F3",
+    padding: "12px",
+    borderRadius: "4px",
+    margin: "16px 0",
+    fontSize: "14px",
+  }}
+>
+  🧠 <strong>Important</strong>:
+  <ul style={{ paddingLeft: "20px", margin: 0 }}>
+    <li>
+      The <code>PhotoAi Component</code> <strong>must</strong> be placed as the{" "}
+      <strong>first component</strong> in your form.
+    </li>
+    <li>
+      Your form <strong>must</strong> contain at least one textbox labeled{" "}
+      <strong>"Others"</strong> to capture any unmatched data.
+    </li>
+  </ul>
+</div>
+
+This tool simplifies form-filling by allowing users to upload photos, after which the AI will autofill form fields. Users can then review or edit the pre-filled data as needed.
+
+To start using this feature:
+
+1. Visit **SPF Web**, create a new template.
+2. From the left menu, **drag the PhotoAi Component** into your template as the **topmost component**.
+3. Add the required **TextBoxes**, and label them meaningfully. The AI matches extracted data based on label relevance.
+4. Ensure there is one textbox labeled **“Others”** to collect any additional data not matched to specific labels.
+
+---
 
 #### 🧪 How to test it
 
-1. **Select a main form** and begin entering data.
-2. When you input specific values, a **popup** may appear indicating that a related subform must be filled.
-3. If the main form has **multiple subforms**, additional popups will appear for each triggered condition.
-4. Upon submitting the main form, any triggered subforms will be automatically saved as **drafts**.
+##### 🖥️ On Web (Creating the Form)
+
+1. Go to **SPF Web** → Sidebar → **Forms** → **Form Templates** → Click **Create Template**.
+2. **Drag the PhotoAi Component** to the top of the form.
+3. Add **TextBox components**. _(Only textboxes are supported for autofill as of now.)_
+4. Add a textbox labeled **"Others"** at the end — this is **mandatory**.
+5. Share the form with the intended team/person:
+   - Click the ⚙️ gear icon on the component.
+   - Go to the **Settings** tab.
+   - Scroll to the bottom and set **Shared To**, then click **Save**.
+
+---
+
+##### 📱 On Mobile (Using the Form)
+
+1. Select the form you just created.
+2. Upload one or more relevant images. _(Supports scanned PDFs, handwriting, visuals, shapes, and textual content.)_
+3. The AI will automatically extract data and populate the appropriate fields.
+4. Populated fields will be highlighted in yellow to indicate that the input is from AI.
+5. Review and edit the pre-filled inputs if needed.
+6. The following images are examples of AI-extracted data after analyzing the visual or textual elements of the image. This includes shapes, objects, handwritten notes, symbols, and layout.
 
 <div style={{
   display: 'flex',
@@ -26,20 +80,105 @@ The form system now supports **multiple subforms**. This enhancement allows dyna
   overflowX: 'auto',
   padding: '8px'
 }}>
+  <div style={{ textAlign: 'center' }}>
+
+  <img
+    src="/images/AICaptureWordFromPic.png"
+    alt="AICaptureWordFromPic"
+    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+  />
+      <p style={{ marginTop: '8px', fontSize: '14px' }}>Textual</p>
+      </div>
+
+  <div style={{ textAlign: 'center' }}>
+
+  <img
+    src="/images/AIDrawings.png"
+    alt="AIDrawings"
+    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+  />
+      <p style={{ marginTop: '8px', fontSize: '14px' }}>Drawing/Sketch</p>
+      </div>
+  <div style={{ textAlign: 'center' }}>
+
+  <img
+    src="/images/AIVisual1.png"
+    alt="AIVisual1"
+    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+  />
+      <p style={{ marginTop: '8px', fontSize: '14px' }}>Visual</p>
+      </div>
+</div>
+
+<div
+  style={{
+    color: "#2196f3",
+    fontWeight: "bold",
+    textAlign: "center",
+    padding: "10px 0",
+    fontSize: "16px",
+  }}
+>
+  🔵 🔵 🔵 NEXT SECTION 🔵 🔵 🔵
+</div>
+
+## 🚀 Testing Release 10th June 2025
+
+- Android (1221)
+- iOS (745)
+
+### 🔹 Multiple Subform
+
+#### 🧪 What's new
+
+The form system now supports **multiple subforms**. This enhancement allows dynamic subform generation based on user input.
+
+#### 🧪 How to test it
+
+1. **Select a main form** and begin entering data.
+2. When you input specific values, a **popup** may appear indicating that a related subform must be filled.
+3. If the main form has **multiple subforms**, additional popups will appear for each triggered condition.
+4. Upon submitting the main form, any triggered subforms will be automatically saved as **drafts**.
+
+<div
+  style={{
+    display: "flex",
+    gap: "16px",
+    justifyContent: "center",
+    flexWrap: "nowrap",
+    overflowX: "auto",
+    padding: "8px",
+  }}
+>
   <img
     src="/images/parentForm.png"
     alt="Parent Form"
-    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+    style={{
+      width: "300px",
+      height: "auto",
+      borderRadius: "8px",
+      flexShrink: 0,
+    }}
   />
   <img
     src="/images/triggerSubform.png"
     alt="Trigger Subform"
-    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+    style={{
+      width: "300px",
+      height: "auto",
+      borderRadius: "8px",
+      flexShrink: 0,
+    }}
   />
   <img
     src="/images/SubformSaved.png"
     alt="Subform Saved"
-    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+    style={{
+      width: "300px",
+      height: "auto",
+      borderRadius: "8px",
+      flexShrink: 0,
+    }}
   />
 </div>
 
@@ -59,27 +198,44 @@ After daily submissions are completed:
 4. Each subform will have a **View** button. Click it to see the submitted data.
 5. If multiple subforms exist, each will be listed separately with its own View button.
 
-<div style={{
-  display: 'flex',
-  gap: '16px',
-  justifyContent: 'center',
-  flexWrap: 'nowrap',
-  overflowX: 'auto',
-  padding: '8px'
-}}>
+<div
+  style={{
+    display: "flex",
+    gap: "16px",
+    justifyContent: "center",
+    flexWrap: "nowrap",
+    overflowX: "auto",
+    padding: "8px",
+  }}
+>
   <img
     src="/images/SubformSaved.png"
     alt="Parent Form"
-    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+    style={{
+      width: "300px",
+      height: "auto",
+      borderRadius: "8px",
+      flexShrink: 0,
+    }}
   />
   <img
     src="/images/ViewDetails.png"
     alt="Trigger Subform"
-    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+    style={{
+      width: "300px",
+      height: "auto",
+      borderRadius: "8px",
+      flexShrink: 0,
+    }}
   />
   <img
     src="/images/UserSubmittedSB.png"
     alt="Subform Saved"
-    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+    style={{
+      width: "300px",
+      height: "auto",
+      borderRadius: "8px",
+      flexShrink: 0,
+    }}
   />
 </div>
