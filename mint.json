@@ -69,7 +69,9 @@
       "group": "User Testing",
       "pages": [
         "user-testing/spf",
-        "user-testing/spi"
+        "user-testing/spi",
+        "user-testing/spiweb",
+        "user-testing/sphweb"
   
       ]
     }
