@@ -3,6 +3,155 @@ title: "SansPaper Form Mobile"
 description: "All user testing for SansPaper Form Mobile"
 ---
 
+## 🚀 Testing Release 05th August 2025
+
+- Android (1250)
+- iOS (763)
+
+### 🔹 Deep Linking
+
+#### 🧪 What's New
+
+Interaction between Sans Paper Form and Sans Paper ID .
+When the user taps the Add Skill button in Sans Paper ID, it will open the Sans Paper Form app.
+If the app is not installed, the user will be redirected to the App Store/Google Play Store to install it.
+
+
+#### 🧪 How to Test
+| Step | Action                                               | Expected Result                                                                                |
+| ---- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| 1    | Install both apps (Sans Paper ID & Sans Paper Form). | Both apps are successfully installed on the device.                                            |
+| 2    | Open Sans Paper ID and log in.                       | User logs in successfully and sees the dashboard/home screen.                                  |
+| 3    | Locate and tap **Add Skill** button.                 | Action is triggered and the device attempts to open Sans Paper Form.                           |
+| 4    | Verify behavior (installed case).                    | Sans Paper Form launches directly and navigates to the expected “Add Skill” screen.            |
+| 5    | Uninstall Sans Paper Form from the device.           | App is removed from the device.                                                                |
+| 6    | Tap **Add Skill** in Sans Paper ID again.            | Redirection to App Store (iOS) or Google Play Store (Android) app listing for Sans Paper Form. |
+| 7    | Confirm store page.                                  | Correct app page is displayed with install/download option.                                    |
+
+
+### 🔹 SSO
+#### 🧪 What's New
+Mobile now supports Single Sign-On (SSO), allowing users to log in seamlessly between Sans Paper Form and Sans Paper ID without re-entering credentials.
+
+#### 🧪 How to Test
+| Step | Action                                               | Expected Result                                                         |
+| ---- | ---------------------------------------------------- | ----------------------------------------------------------------------- |
+| 1    | Install both apps (Sans Paper ID & Sans Paper Form). | Both apps are successfully installed on the device.                     |
+| 2    | Log out from both apps.                              | User is fully logged out; no saved session remains.                     |
+| 3    | Log in to Sans Paper ID using valid credentials.     | User logs in successfully to Sans Paper ID.                             |
+| 4    | Open Sans Paper Form without logging in separately.  | Sans Paper Form automatically logs in using the same SSO session.       |
+| 5    | Log out from Sans Paper Form.                        | User is logged out of Sans Paper Form.                                  |
+| 6    | Switch to Sans Paper ID.                             | Sans Paper ID is also logged out (session cleared), when navigating to other screen                     |
+| 7    | Repeat test on both iOS and Android.                 | Behavior is consistent and matches expected SSO flow on both platforms. |
+
+
+---
+
+
+## 🚀 Testing Release 12th July 2025
+
+- Android (1243)
+- iOS (751)
+
+### 🔹 Multiple Uploads
+
+#### 🧪 What's New
+
+The Photos and PhotoAI components now support uploading multiple images at once.
+
+#### 🧪 How to Test
+1. Open any form that includes a Photo or PhotoAI component.
+2. Upload one or more relevant images.
+(Supports scanned PDFs, handwriting, visuals, diagrams, and text-based content.)
+3. Uploaded images will appear as thumbnail previews.
+4. Click the Submit button.
+5. In the History (and Drafts), all uploaded images will be displayed correctly.
+
+
+<div style={{
+  display: 'flex',
+  gap: '16px',
+  justifyContent: 'center',
+  flexWrap: 'nowrap',
+  overflowX: 'auto',
+  padding: '8px'
+}}>
+  <div style={{ textAlign: 'center' }}>
+
+  <img
+    src="/images/MultiplePic.png"
+    alt="MultiplePic"
+    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+  />
+      <p style={{ marginTop: '8px', fontSize: '14px' }}>Multiple</p>
+      </div>
+
+
+</div>
+
+---
+
+### 🔹 Hazard and Control Measure Library
+
+#### 🧪 What's New
+The Hazard and Control Measure Library is now available! These two libraries are interdependent:
+
+The Hazard Library is automatically selected based on the chosen Worktype.
+
+The Control Measure Library is then auto-selected based on the selected Hazard.
+
+<div style={{
+  backgroundColor: '#fff3cd',
+  borderLeft: '5px solid #ffeeba',
+  padding: '12px 16px',
+  borderRadius: '4px',
+  margin: '16px 0',
+  color: '#856404'
+}}>
+  <strong>⚠️ Prerequisite:</strong> To use these libraries, a <strong>Worktype Library</strong> must be present in your form.
+</div>
+
+#### 🧪 How to Test
+1. Ensure your form includes the Worktype Library.
+2. Select any Worktype from the list.
+3. The corresponding Hazard will be automatically selected.
+4. Based on the selected Hazard, the relevant Control Measures will also be auto-selected.
+5. The auto-selected items will be shown as blue background chips.
+
+<div style={{
+  display: 'flex',
+  gap: '16px',
+  justifyContent: 'center',
+  flexWrap: 'nowrap',
+  overflowX: 'auto',
+  padding: '8px'
+}}>
+  <div style={{ textAlign: 'center' }}>
+
+  <img
+    src="/images/HazardLib.png"
+    alt="HazardLib"
+    style={{ width: '300px', height: 'auto', borderRadius: '8px', flexShrink: 0 }}
+  />
+      <p style={{ marginTop: '8px', fontSize: '14px' }}>Worktype, Hazard, Control Measure</p>
+      </div>
+
+
+</div>
+
+
+<div
+  style={{
+    color: "#2196f3",
+    fontWeight: "bold",
+    textAlign: "center",
+    padding: "10px 0",
+    fontSize: "16px",
+  }}
+>
+  🔵 🔵 🔵 NEXT SECTION 🔵 🔵 🔵
+</div>
+
 ## 🚀 Testing Release 20th June 2025
 
 - Android (1221)
