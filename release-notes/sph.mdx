@@ -1,6 +1,233 @@
 ---
-title: 'SansPaper Hub Updates'
+title: 'Sans Paper Hub Updates'
 description: 'All release notes for SansPaper Hub'
 ---
 
-## Version
+
+## 🚀 Web released 19 March 2025
+## Node  v20 now Available 
+
+- Login and Sign up using Sanspaper id.
+<img src="/images/sphub/v20Loginhome.png" />
+
+- Signup page
+<img src="/images/sphub/signupv20.png" />
+- user can create there account using emial,linkedIn,Facebook,Google ..
+
+
+-Login Page 
+<img src="/images/sphub/Loginv20.png" />
+- user can Login using there credential 
+
+-  Assistance/Support
+<img src="/images/sphub/Ai.png" />
+<img src="/images/sphub/Aiopen.png"/>
+- user can ask question and get answer
+
+
+
+## 🚀 Web released March 2025
+## Node v10 to v20 Upgrade
+- upgrade of Node.js from version 10 to version 20. The upgrade was initiated on March 3rd, 2025, and completed on March 19th, 2025.
+## Upgrade Timeline
+| Date         | Task                             | Notes                                                                 |
+|--------------|----------------------------------|-----------------------------------------------------------------------|
+| March 3rd    | Initiated Node.js upgrade to v20 | Started the initial upgrade process.                                  |
+| March 3rd-19th | Troubleshooting and issue resolution | Encountered and resolved various issues, including Webpack, React Router, and plugin conflicts. |
+| March 19th   | Completed Node.js upgrade to v20 | Finalized the upgrade process and verified functionality.             |
+
+
+```📌 1. Pre-Upgrade Steps
+
+✅ 1.1 Backup Your Project
+Before upgrading, make sure you have backups:
+
+- git add 
+- git commit -m "Backup before Node.js upgrade"
+- git push origin main
+
+✅ 1.2 Check Current Node.js Version
+
+
+- node -v
+-  If v10.x.x, proceed with upgrade
+
+
+✅ 1.3 Check Global Dependencies
+List all globally installed packages:
+
+
+- npm list -g --depth=0
+
+
+🚀 2. Upgrade Node.js to v20
+
+2.1 If Using nvm (Recommended)
+
+
+- nvm install 20
+- nvm use 20
+- nvm alias default 20
+
+
+2.3 If Using Manual Install
+
+- Download Node.js v20 LTS from nodejs.org
+- Install it manually
+- Verify:
+
+
+- node -v
+- npm -v
+
+
+
+🔧 3. Fix Dependencies After Upgrade
+
+
+3.1 Delete and Reinstall node_modules
+
+
+- rm -rf node_modules package-lock.json
+- npm install
+
+
+3.2 Fix Webpack & Redux Toolkit Issues
+
+- After upgrading, Webpack 5 may break @reduxjs/toolkit due to missing polyfills.
+🔹 Fix process/browser Not Found
+
+ Modify config-overrides.js in customize-cra:
+config.resolve.fallback = {
+  ...config.resolve.fallback,
+  path: require.resolve("path-browserify"),
+  crypto: require.resolve("crypto-browserify"),
+  stream: require.resolve("stream-browserify"),
+  os: require.resolve("os-browserify/browser"),
+  fs: false,
+  module: false,
+  process: require.resolve("process/browser"), // ✅ Fix applied
+  vm: require.resolve("vm-browserify"),
+};
+
+config.plugins = [
+  ...config.plugins,
+  new webpack.ProvidePlugin({
+    process: "process/browser",
+    Buffer: ["buffer", "Buffer"],
+  }),
+];
+
+
+🔹 Install Required Polyfills
+
+
+- npm install process path-browserify crypto-browserify stream-browserify os-browserify vm-browserify buffer
+
+
+
+🔹 Add Webpack "browser" Fix to package.json
+
+"browser": {
+  "process": false
+}
+
+
+🔹 Ignore Source Map Warnings in Webpack
+
+config.ignoreWarnings = [/Failed to parse source map/];
+
+
+
+🛠 4. Upgrade Project Dependencies
+
+4.1 Check Outdated Packages
+
+
+- npm outdated
+
+
+
+4.2 Upgrade Major Dependencies
+
+- npm install -g npm-check-updates
+- ncu -u
+- npm install
+
+
+4.3 Upgrade Critical Dependencies Manually
+
+- npm install react@latest react-dom@latest
+- npm install next@latest
+- npm install @reduxjs/toolkit@latest
+- npm install customize-cra@latest
+- npm install webpack@latest
+
+
+
+📦 5. Post-Upgrade Testing
+
+5.1 Run Build
+
+- npm run build
+
+
+
+5.2 Run Development Server
+
+- npm start
+
+
+5.3 Check Console for Errors
+Open DevTools (F12 in Chrome) and check Console & Network tabs.
+If errors persist, try:
+
+
+- npm run clean && npm install
+
+```
+## 🚀 Web released
+
+## Version v10
+
+
+- website Home.
+<img src="/images/sphub/Home.png" />
+
+- users can login and signupfrom this homw page.
+
+- Signup page.
+<img src="/images/sphub/signup.png" />
+
+- users can signup fill the details.
+
+- Login page.
+<img src="/images/sphub/login.png" />
+
+- users can login using their credential.
+
+
+- Profile Home 
+<img src="/images/sphub/profHome.png"/>
+- user home page they can see the current event and activities.
+
+- Profile Details 
+<img src="/images/sphub/profile.png"/>
+- click to the name lable
+- user can see their Profile details ,setting ,logout
+
+
+- profile Settings
+<img src="/images/sphub/settings.png"/>
+- users can edit their profile details and email verification
+
+
+- More Features in Sanspaper Hub
+
+<img src="/images/sphub/more.png"/>
+
+- User can Experience AI chat 
+- User can learning option in the left side of the screen
+- Send Feedback option
+- Complaince Vault
+- Platform Tracker
