@@ -75,6 +75,21 @@ The **Forms** module in the Sans Paper Form system enables users to create, mana
 | **Standard User**| ✅        | ✅       | ❌           | ❌          | ❌          | ❌         |
 
 
+1. Owner Role (Organization Profile)
+This role is for a user who has self-registered to create their own organization. The Owner has full control over their specific organization but is not a Super Admin.
+Permissions: An Owner can manage their own organization, create teams, add users, and manage forms.
+Key Limitation: An Owner does not have global permissions and cannot view or edit users outside of their own organization. This role cannot grant other users "Super Admin" status.
+Dual Nature: An Owner can also be invited to another organization. When they are invited, they initially enter as a Regular User and must be upgraded to a different role (like Admin) by the inviting organization's Owner or another Admin.
+2. Organization Role (Invited Profile)
+This role is for a user who has been invited to join an existing organization. Their permissions are limited to the specific organization they were invited to.
+Permissions: An invited user has roles (e.g., Administrator, Manager, Guest) that are assigned by the inviting organization's owner. These roles do not transfer between organizations. An Administrator can switch between any organization they are a part of and have been granted a role in, and make edits just like in Sans Paper Form.
+Role Progression: Upon invitation, a user enters a new organization as a Regular User. They can be upgraded to an Administrator by the inviting organization's Owner or another Administrator.
+Key Limitation: A user with an Organization Role has no authority to manage or create new organizations.
+3. Super Admin (Sans Paper Group)
+This role is for the Sans Paper team only and has "God mode" permissions. It is not related to an organization's "Owner" role.
+Permissions: A Super Admin has global authority. They can CRUD (create, read, update, delete) library items of any organization and can view or edit any user profile. A Super Admin can also use the "Log in As" feature from the UI to log into any user's account to make changes directly.
+Key Limitation: The only way for a user to be a Super Admin is for a current Super Admin to grant them that status. The system must never automatically assign this role.
+The Bug: Your account, as an owner, is incorrectly being granted super admin permissions and access to the "Log in As" feature. This is the security flaw that needs to be fixed.
 
 
 
