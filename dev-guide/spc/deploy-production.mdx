@@ -1,0 +1,35 @@
+---
+title: 'Production Server Deployment'
+description: 'How to deploy SansPaper Connect to Production Server'
+---
+
+<Note>
+  Before deployment to any server, please make sure that the current build is successful without any error on your own local machine.
+</Note>
+
+<Note>
+  Azure Pipelines will auto deploy when pull request to main is accepted at Github. Please wait around 4 to 5 minutes for the pipelines to finished run.
+</Note>
+
+## <Icon icon="list-check"  size={30}/> Prerequisite
+- Terminal SSH client (Putty or any equivalent app)
+- Production Server SSH Access (Please ask Marcus of Gim for server access)
+
+<Note>
+  Current Production Server IP Address: 209.38.28.188
+</Note>
+
+## <Icon icon="react"  size={30}/> Updating the .env file
+- Go to the project directory.
+
+```sh
+cd /var/www/connect.sanspaper.com/
+```
+
+- Update the env file. Then accept pull request or rerun the current pipeline.
+
+
+## <Icon icon="eye"  size={30}/> Accessing the project 
+
+- To open the production SansPaper Connect, use this url [Sans Paper Connect](https://connect.sanspaper.com/).
+

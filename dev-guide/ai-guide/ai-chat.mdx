@@ -5,9 +5,7 @@ description: 'Guides on setup and using Microsoft Azure AI Chat'
 
 ## Login on Microsoft Azure AI Foundry
 - Go to [Azure AI Foundry](https://ai.azure.com/).
-- Click on 'Login Options'.
-- Login as organization.
-- Use 'sanspapergroup.onmicrosoft.com' as organization name.
+- Login to the new Azure Account. 
 
 ## Using the API
 
@@ -28,8 +26,14 @@ description: 'Guides on setup and using Microsoft Azure AI Chat'
 - Next, wrap the CopilotKit in your `App` using the code show below.
 
 ```js
-<CopilotKit runtimeUrl={import.meta.env.VITE_AZURE_OPENAI_URL + '&api-key=' + import.meta.env.VITE_AZURE_OPENAI_API_KEY}>
-   <App />
+<CopilotKit
+    runtimeUrl={import.meta.env.VITE_AZURE_EMBED_URL}
+    headers={{
+        'api-key': import.meta.env.VITE_AZURE_EMBED_AUTH_KEY,
+        'Content-Type': 'application/json',
+    }}
+>
+    <App />
 </CopilotKit>
 ```
 - Next, import the `CopilotSidebar` to use the chat sidebar. Code sample as below.

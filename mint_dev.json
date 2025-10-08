@@ -127,12 +127,12 @@
       ]
     },
     {
-      "group": "Sans Paper Pilot",
+      "group": "Sans Paper Augur",
       "pages": [
-        "dev-guide/spp/deploy-local",
-        "dev-guide/spp/deploy-production",
-        "dev-guide/spp/add-graphile",
-        "dev-guide/spp/troubleshooting"
+        "dev-guide/spa/deploy-local",
+        "dev-guide/spa/deploy-production",
+        "dev-guide/spa/add-graphile",
+        "dev-guide/spa/troubleshooting"
       ]
     },
     {
@@ -144,7 +144,7 @@
     {
       "group": "Sans Paper Connect",
       "pages": [
-        "dev-guide/spc/introduction"
+        "dev-guide/spc/deploy-production"
       ]
     },
     {

@@ -5,41 +5,40 @@ description: 'Guides on upload and generating index on Microsoft Azure AI to be 
 
 ## Login on Microsoft Azure Portal
 - Go to [Microsoft Azure Portal](https://portal.azure.com/).
-- Click on 'Login Options'.
-- Login as organization.
-- Use 'sanspapergroup.onmicrosoft.com' as organization name.
+- Login on new Azure account.
 
 ## Uploading documents
-- On the dashboard, click the `Storage Accounts` service.
-- Click on storage name `stsanspaperf117947417036` .
-- Click on `Storage Browser` .
-- Click on `Blob Containers` .
-- Click on `1a7eb3dd-53cf-420d-998b-0867e38ac065-azureml-blobstore` .
-- Next, open the `UI` folder.
-- Then open the `model-learning-data` folder.
-- Click 'upload' to upload files into the `model-learning-data` folder.
+- On the dashboard, click the `Storage Accounts` service on the left sidebar.
+- Click on storage name `sanspapergroup` .
+- Click on dropdown menu `Data storage` .
+- Click on `Containers` .
+- Click on container name `azumeml` .
+- Click 'upload' to upload files into the folder.
 
-## Generating Index for Microsoft Azure AI 
-- Go to [Azure AI Foundry](https://ai.azure.com/).
-- Click on the `sanspaper-form-web` project.
-- On the left panel, click `Data + indexes` in the 'My Assets' dropdown group.
-- Switch tab to `Indexes` tab.
-- Create a new index.
-- Select data source as `Azure Blob Storage` .
-- Select blob store as `workspaceblobstore` .
-- Then open the folder `UI` .
-- Then click on the checkbox to select the `model-learning-data` folder. Proceed with 'Next'.
-- Select Azure AI Search service as `sanspaperformwebcopilotai`. Proceed with 'Next'.
-- Next, tick the Vector Setting. And select embedding model as `sanspaperform-openai_aoai`. Proceed with 'Next'.
-- Click 'Create' to start digesting the files into AI index.
-- Wait until the process is done. This will take sometime.
-- After the process is successfully finished, go to Indexes list and check to see that the index status is 'Ready'.
+## Generating Index for Microsoft Azure AI
+- On the dashboard, click the `Resource groups` service on the left sidebar. 
+- Click on resource `AI-search` .
+- Click on `sanspaper-ai-search` which is a search service.
+- Click on `Import Data (new)` .
+- Choose data source as `Azure Blob Storage` .
+- Choose scenario as `RAG` .
+- Select storage account `sanspapergroup` .
+- Select blob container `azureml` . Then click Next.
+- Select Azure OpenAI service as `azure-openai-search` .
+- Select model deployment as `text-embedding-ada-002` .
+- Tick the acknowledge button and click Next.
+- Click next on `vectorize image` page.
+- Click next on `advanced setting` page.
+- On page `review and create`, update the object name or leave as default. Click create to start creating the index. This name is the index name to be used in the Azure AI chat.
+- After finished creating index, the index will be created at the page `sanspaper-ai-search`. 
+- To confirm the index name, click the dropdown `Search Management` at the left sidebar. Then click `Indexes` to see the newly created index.
+- This index name is now the search index to be used in Azure Chat search index.
 
 ## Update the Index Name in Applications
-- Copy the newly created vector index name and replace the index name inside the respective project .env file.
+- Copy the newly created search index name and replace the index name inside the respective project .env file.
 
 ```env
-VITE_AZURE_SEARCH_INDEX=funny-tree-hbby8jh6jl #replace this value with the new index name
+VITE_AZURE_SEARCH_INDEX=rag-1759226008449 #replace this value with the new index name
 ```
 
 - Rebuild the project and deploy as usual.

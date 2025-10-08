@@ -31,42 +31,43 @@ description: 'Guides on setup and using Microsoft Azure AI Chat with provided do
 <CopilotKit
     body={
         {
-        'azureSearchEndpoint': import.meta.env.VITE_AZURE_SEARCH_URL,
-        'azureSearchKey': import.meta.env.VITE_AZURE_SEARCH_KEY,
-        'azureSearchIndexName': import.meta.env.VITE_AZURE_SEARCH_INDEX,
-        'data_sources': [
+            "azureSearchEndpoint": import.meta.env.VITE_AZURE_SEARCH_URL,
+            "azureSearchKey": import.meta.env.VITE_AZURE_SEARCH_KEY,
+            "azureSearchIndexName": import.meta.env.VITE_AZURE_SEARCH_INDEX,
+            "data_sources": [
             {
                 "type": "azure_search",
                 "parameters": {
-                    "filter": null,
-                    "endpoint": import.meta.env.VITE_AZURE_SEARCH_URL,
-                    "index_name": import.meta.env.VITE_AZURE_SEARCH_INDEX,
-                    "semantic_configuration": "azureml-default",
+                "endpoint": import.meta.env.VITE_AZURE_SEARCH_URL,
+                "index_name": import.meta.env.VITE_AZURE_SEARCH_INDEX,
+                "semantic_configuration": "default",
+                "query_type": "vector",
+                "fields_mapping": {},
+                "in_scope": true,
+                "role_information": "You are an AI assistant that helps people find information. Try to get info from included vector first before showing general results.",
+                "filter": null,
+                "strictness": 3,
+                "top_n_documents": 10,
                 "authentication": {
                     "type": "api_key",
-                    "key": import.meta.env.VITE_AZURE_SEARCH_AUTH_KEY
+                    "key": import.meta.env.VITE_AZURE_SEARCH_KEY
                 },
                 "embedding_dependency": {
-                    "type": "endpoint",
-                    "endpoint": import.meta.env.VITE_AZURE_EMBED_URL,
-                    "authentication": {
-                        "type": "api_key",
-                        "key": import.meta.env.VITE_AZURE_EMBED_AUTH_KEY
-                    }
+                    "type": "deployment_name",
+                    "deployment_name": "text-embedding-ada-002"
                 },
-                "query_type": "vector_simple_hybrid",
-                "in_scope": true,
-                "role_information": "You are an AI assistant that helps people find information.",
-                "strictness": 4,
-                "top_n_documents": 100,
                 "key": import.meta.env.VITE_AZURE_SEARCH_KEY,
                 "indexName": import.meta.env.VITE_AZURE_SEARCH_INDEX
                 }
             }
-        ]
+            ]
         }
     }
-    runtimeUrl={import.meta.env.VITE_AZURE_OPENAI_URL + '&api-key=' + import.meta.env.VITE_AZURE_OPENAI_API_KEY}>
+    runtimeUrl={import.meta.env.VITE_AZURE_EMBED_URL}
+    headers={{
+        'api-key': import.meta.env.VITE_AZURE_EMBED_AUTH_KEY,
+        'Content-Type': 'application/json',
+    }}>
     <CopilotSidebar
         icons={
             {
