@@ -3,14 +3,10 @@ title: 'SansPaper AI Chat'
 description: 'Guides on setup and using Microsoft Azure AI Chat'
 ---
 
-## Login on Microsoft Azure AI Foundry
-- Go to [Azure AI Foundry](https://ai.azure.com/).
-- Login to the new Azure Account. 
-
 ## Using the API
 
 <Note>
-  The value `VITE_AZURE_OPENAI_URL` and `VITE_AZURE_OPENAI_API_KEY` are defined at .env file for frontend SPF Web project.
+  We no longer set the Azure AI API values and keys in the .env file due to security reason. 
 </Note>
 
 - Azure AI Chat is used with CopilotKit plugin.
@@ -23,31 +19,38 @@ description: 'Guides on setup and using Microsoft Azure AI Chat'
     "@copilotkit/react-textarea": "0.37.0",
     "@copilotkit/shared": "0.37.0",
 ```
-- Next, wrap the CopilotKit in your `App` using the code show below.
+- Next, wrap the `CopilotKit` in your `App` using the code show below.
 
 ```js
+import { CopilotKit } from "@copilotkit/react-core";
+
+
 <CopilotKit
-    runtimeUrl={import.meta.env.VITE_AZURE_EMBED_URL}
-    headers={{
-        'api-key': import.meta.env.VITE_AZURE_EMBED_AUTH_KEY,
-        'Content-Type': 'application/json',
-    }}
+    runtimeUrl={import.meta.env.VITE_SANSPAPER_CHAT_SERVICE_URL}
 >
     <App />
 </CopilotKit>
 ```
-- Next, import the `CopilotSidebar` to use the chat sidebar. Code sample as below.
+- Next, import another `CopilotKit` instance with updated parameters with `CopilotSidebar` to use the chat sidebar. Code sample as below.
 
 ```js
 import { CopilotSidebar } from "@copilotkit/react-ui";
+import { CopilotKit } from "@copilotkit/react-core";
 
-<CopilotSidebar
-    labels={{
-        title: "SansPaperForm AI Chat",
-        initial: [
-            "Hi! 👋 Welcome to SansPaperForm AI Chat. We have added new feature `Chat-to-Action` functions.",
-            "Type 'list chat to action based on my role' to know more."]
-    }} >
-</CopilotSidebar>
+<CopilotKit
+    runtimeUrl={import.meta.env.VITE_SANSPAPER_CHAT_SERVICE_URL + '?orgid=' + activeOrganization.id + '&userid=' + user.id + '&source=' + source}
+    headers={{
+        'Authorization': 'Bearer ' + accessToken,
+    }}
+>
+    <CopilotSidebar
+        labels={{
+            title: "SansPaperForm AI Chat",
+            initial: [
+                "Hi! 👋 Welcome to SansPaperForm AI Chat. We have added new feature `Chat-to-Action` functions.",
+                "Type 'list chat to action based on my role' to know more."]
+            }} >
+    </CopilotSidebar>
+</CopilotKit>
 ```
 

@@ -1,0 +1,101 @@
+---
+title: 'SansPaper AI Chat App'
+description: 'Guides on configuring and using the AI Chat app'
+---
+
+## Login on Microsoft Azure Portal
+- Go to [Azure Portal](https://portal.azure.com//).
+- Login to the Azure Account. 
+- Go to App Service resource, and click the sanspaper-chat-service.
+
+
+## Overview of the current AI Chat service
+<img src="/images/overview.png" />
+
+
+## Viewing logs for the chat app
+<img src="/images/view-log.png" />
+
+
+## Setting environment values for the chat app
+<img src="/images/env-values.png" />
+
+
+## Setting the CORS for the chat app
+<img src="/images/cors.png" />
+
+
+## Using the chat app API (non-stream, return results as string of text)
+- Can be used with any non-stream chat plugins
+
+```js
+let messages = reqData.get("messages"); // chat messages
+let userId = reqData.get("userId"); // user id
+let orgId = reqData.get("orgId"); // org id
+let token = reqData.get("token"); // auth0 access token
+let source = "SPAUGUR"; // projectname as source
+
+// generate URL params string
+let urlParams = `/orgid=${orgId?.toString()}&userid=${userId?.toString()}&source=${source}`;
+let urlChat = 'https://sanspaper-chat-service-dweudyd7eze4gmcd.australiaeast-01.azurewebsites.net' + urlParams;
+
+// axios call, set type as multipart/form-data
+const formData = new FormData();
+formData.append('messages', JSON.stringify(messages));
+formData.append('token', token ? token.toString() : '');
+const response = await axios.post(urlChat, formData, {
+    headers: {
+        'Content-Type': 'multipart/form-data',
+    },
+});
+
+return NextResponse.json({ text: response.data?.choices[0]?.message?.content });
+```
+
+## Using the chat app API (stream, return stream of responses suitable for plugins that has direct LLM connections)
+- Currently only being used by `CopilotKit` on Sans Paper Form Web
+
+```js
+<CopilotKit
+    runtimeUrl={import.meta.env.VITE_SANSPAPER_CHAT_SERVICE_URL + '?orgid=' + activeOrganization.id + '&userid=' + user.id + '&source=' + source}
+    headers={{
+        'Authorization': 'Bearer ' + accessToken,
+    }}
+>
+    <CopilotSidebar
+        labels={{
+            title: "SansPaperForm AI Chat",
+            initial: [
+                "Hi! 👋 Welcome to SansPaperForm AI Chat. We have added new feature `Chat-to-Action` functions.",
+                "Type 'list chat to action based on my role' to know more."]
+            }} >
+    </CopilotSidebar>
+</CopilotKit>
+```
+
+- For inference chat, add in another header `X-Agent` value as shown below.
+
+```js
+<CopilotKit
+    runtimeUrl={import.meta.env.VITE_SANSPAPER_CHAT_SERVICE_URL + '?orgid=' + activeOrganization.id + '&userid=' + user.id + '&source=' + source}
+    headers={{
+        'Authorization': 'Bearer ' + accessToken,
+        'X-Agent': 'true'
+    }}
+>
+    <div style={{ WebkitUserSelect: 'text' }}>
+        <CopilotSidebar
+            icons={
+                {
+                    openIcon: <FaRobot size="35px" />,
+                }}
+                labels={{
+                    title: "SansPaperForm AI Inference Chat",
+                    initial: [
+                      "Hi! 👋 Welcome to SansPaperForm AI Inference Chat.",
+                      "This chat will help you to find information based on data imported in the AI model."]
+                }} >
+        </CopilotSidebar>
+    </div>
+</CopilotKit>
+```

@@ -152,6 +152,7 @@
       "pages": [
         "dev-guide/ai-guide/ai-vision",
         "dev-guide/ai-guide/ai-chat",
+        "dev-guide/ai-guide/ai-chat-app",
         "dev-guide/ai-guide/ai-dataAnalyze-chat",
         "dev-guide/ai-guide/ai-import-files",
         "dev-guide/ai-guide/ai-gemini-image"
