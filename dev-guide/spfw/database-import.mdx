@@ -19,6 +19,34 @@ psql --username=<db_user_name> databasename < data_base_dump.sql
 
 - Next, run these Sql lines to create views table for `spf_db` database.
 
+```sql function is_valid_json
+DROP FUNCTION IF EXISTS is_valid_json_array;
+CREATE FUNCTION is_valid_json_array(p_value text) returns boolean AS
+            $$
+            BEGIN
+              return JSON_ARRAY_LENGTH(p_value::json) > 0;
+            EXCEPTION
+              WHEN others THEN
+                 return false;
+            END;
+            $$
+            language plpgsql
+            immutable;
+
+DROP FUNCTION IF EXISTS is_valid_json;			
+CREATE FUNCTION is_valid_json(p_value text) returns boolean AS
+            $$
+            BEGIN
+              return (p_value::json IS NOT NULL);
+            EXCEPTION
+              WHEN others THEN
+                 return false;
+            END;
+            $$
+            language plpgsql
+            immutable;
+```
+
 ```sql vw_field_property_option_answers
 DROP VIEW IF EXISTS vw_field_property_option_answers;
 CREATE VIEW vw_field_property_option_answers AS
