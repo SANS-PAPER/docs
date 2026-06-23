@@ -1,0 +1,83 @@
+---
+title: 'Developers Guide'
+description: 'Internal documentation for Sans Paper engineers'
+---
+
+<Info>
+  This page is available in the **developer view only**. Customer-facing documentation uses `mint_public.json` and does not include developer guides.
+</Info>
+
+## Running the developer view locally
+
+To preview the full developer documentation site (including deployment guides, API reference, and AI guides):
+
+1. Copy the contents of `mint_dev.json` into `mint.json`.
+2. From the repo root, run:
+
+```bash
+mintlify dev
+```
+
+3. Open `http://localhost:3000` and use the **Developers Guide** tab in the top navigation.
+
+To preview the public customer site instead, copy `mint_public.json` into `mint.json` before running `mintlify dev`.
+
+## Product guides
+
+Step-by-step guides for setting up, deploying, and troubleshooting each Sans Paper product.
+
+<CardGroup cols={2}>
+  <Card title="Sans Paper Form Web" icon="browser" href="/dev-guide/spfw/deploy-local">
+    Local, staging, and production deployment for the SPF admin portal and API.
+  </Card>
+  <Card title="Sans Paper Form Mobile" icon="mobile" href="/dev-guide/spfm/introduction">
+    Mobile app setup and development notes for SPFM.
+  </Card>
+  <Card title="Sans Paper ID Web" icon="globe" href="/dev-guide/spiw/introduction">
+    Web platform introduction and development overview for SPIW.
+  </Card>
+  <Card title="Sans Paper ID Mobile" icon="id-card" href="/dev-guide/spim/introduction">
+    Mobile app introduction and development overview for SPI.
+  </Card>
+  <Card title="SPI Back Button Routes" icon="arrow-left" href="/dev-guide/back-button-routes">
+    Route reference and QA checklist for back button behaviour on all SPI pages.
+  </Card>
+  <Card title="Sans Paper Augur" icon="chart-line" href="/dev-guide/spa/deploy-local">
+    Local and production deployment, Graphile Worker, and troubleshooting.
+  </Card>
+  <Card title="Sans Paper Hub" icon="building" href="/dev-guide/sph/deploy-local">
+    Local deployment and platform integration for SPH.
+  </Card>
+  <Card title="Sans Paper Connect" icon="link" href="/dev-guide/spc/deploy-production">
+    Production deployment for SPC.
+  </Card>
+</CardGroup>
+
+## AI & ML guides
+
+<CardGroup cols={2}>
+  <Card title="AI Vision" icon="eye" href="/dev-guide/ai-guide/ai-vision">
+    Image tagging and vision workflows.
+  </Card>
+  <Card title="AI Chat" icon="comments" href="/dev-guide/ai-guide/ai-chat">
+    Chat integration patterns and setup.
+  </Card>
+  <Card title="AI Chat App" icon="message" href="/dev-guide/ai-guide/ai-chat-app">
+    Standalone chat application guide.
+  </Card>
+  <Card title="Data Analysis Chat" icon="chart-bar" href="/dev-guide/ai-guide/ai-dataAnalyze-chat">
+    Analyse data with conversational AI.
+  </Card>
+  <Card title="Import Files" icon="file-import" href="/dev-guide/ai-guide/ai-import-files">
+    File import workflows for AI pipelines.
+  </Card>
+  <Card title="Gemini Image" icon="image" href="/dev-guide/ai-guide/ai-gemini-image">
+    Gemini-powered image processing.
+  </Card>
+</CardGroup>
+
+## API reference
+
+<Card title="API Documentation" icon="code" href="/api-reference/introduction">
+  Endpoint reference and authentication details for Sans Paper APIs.
+</Card>

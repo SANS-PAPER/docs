@@ -84,6 +84,12 @@
       ]
     },
     {
+      "group": "Developers Guide",
+      "pages": [
+        "dev-guide/introduction"
+      ]
+    },
+    {
       "group": "API Documentation",
       "pages": [
         "api-reference/introduction"
@@ -117,13 +123,16 @@
     {
       "group": "Sans Paper ID Web",
       "pages": [
-        "dev-guide/spiw/introduction"
+        "dev-guide/spiw/introduction",
+        "dev-guide/back-button-routes",
+        "dev-guide/loading-indicators"
       ]
     },
     {
       "group": "Sans Paper ID Mobile",
       "pages": [
-        "dev-guide/spi/introduction"
+        "dev-guide/spim/introduction"
+        
       ]
     },
     {
