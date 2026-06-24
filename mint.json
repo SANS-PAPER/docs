@@ -123,9 +123,7 @@
     {
       "group": "Sans Paper ID Web",
       "pages": [
-        "dev-guide/spiw/introduction",
-        "dev-guide/back-button-routes",
-        "dev-guide/loading-indicators"
+        "dev-guide/spiw/introduction"
       ]
     },
     {
