@@ -1,0 +1,318 @@
+---
+title: 'Loading Indicators'
+description: 'Reference and QA checklist for loading indicators across Sans Paper ID Web'
+---
+
+Use this page when implementing or verifying loading states across Sans Paper ID Web. Each action should show the correct indicator component and copy.
+
+## Loading components (shared)
+
+| Component | What it shows | Used for |
+| --- | --- | --- |
+| `LogoLoader` | Spinning IDlogo.jpg (+ optional label) | Full-page / inline branded loading |
+| `AppSpin` | Ant Design Spin with logo indicator | Overlays, sections, modals |
+| `FormLoader` | LogoLoader large + "Loading..." | Page/section data fetch |
+| `Loader` | Full-screen centered LogoLoader | Auth session bootstrap |
+| `getLogoLoaderIndicator()` | Logo inside Ant Design spin | Global default + specific buttons |
+| Ant Design `Button loading={…}` | Logo spinner on button (via ConfigProvider in root layout) | Submit / save / action buttons |
+| Text only | "Loading...", "Generating...", etc. | Some sub-sections (no logo) |
+
+### Shared components QA checklist
+
+- [ ] `LogoLoader` — spinning logo with optional label
+- [ ] `AppSpin` — Ant Design Spin with logo indicator
+- [ ] `FormLoader` — large logo + "Loading..."
+- [ ] `Loader` — full-screen centered logo
+- [ ] `getLogoLoaderIndicator()` — logo inside Ant Design spin
+- [ ] Ant Design `Button loading` — logo spinner via `ConfigProvider`
+- [ ] Text-only loaders — no logo, correct copy shown
+
+## Global / app-wide
+
+| Action / trigger | Indicator |
+| --- | --- |
+| Auth0 session resolving (not logged in) | `Loader` (full-screen LogoLoader) |
+| Post-login account setup (AuthWrapper) | Full-screen overlay + `AppSpin` — "Setting up your account…" |
+| Any Ant Design Spin / button loading app-wide | IDlogo.jpg via `ConfigProvider` in `layout.tsx` |
+
+### Global QA checklist
+
+- [ ] Auth0 session resolving — `Loader` (full-screen LogoLoader)
+- [ ] Post-login account setup — overlay + `AppSpin` ("Setting up your account…")
+- [ ] App-wide Ant Design Spin / button loading — IDlogo.jpg via `ConfigProvider` in `layout.tsx`
+
+## Profile (`/` and `/profile`)
+
+| Action | Indicator |
+| --- | --- |
+| Initial profile load | Full-page overlay + `AppSpin` — "Loading profile…" |
+| Saving profile completion modal | Same overlay — "Saving profile…" |
+| Profile completion modal submit | Modal loading + Save button shows `AppSpin` |
+| Generate bio (AI) — profile modal | Button swaps to `AppSpin` |
+| Save profile edits | Button `loading={isSavingProfile}` |
+| Save availability / preferences | Button `loading={isSavingPreferences}` |
+| Claim profile (send email) | Button `loading={claimLoading}` |
+| Google Maps autocomplete | Placeholder text — "maps loading…" |
+| Top Skills — load skills | Text — "Loading..." |
+| Top Skills — share PDF link | Button text — "Generating..." |
+| Work Experience — load photos | Text — "Loading..." |
+| Profile Review — load reviews | Text — "Loading..." |
+| Gallery — set default photo | Inline `LogoLoader` on button |
+
+### Profile QA checklist
+
+- [ ] Initial profile load — overlay + `AppSpin` ("Loading profile…")
+- [ ] Saving profile completion modal — overlay ("Saving profile…")
+- [ ] Profile completion modal submit — modal loading + Save button `AppSpin`
+- [ ] Generate bio (AI) — button swaps to `AppSpin`
+- [ ] Save profile edits — `loading={isSavingProfile}`
+- [ ] Save availability / preferences — `loading={isSavingPreferences}`
+- [ ] Claim profile (send email) — `loading={claimLoading}`
+- [ ] Google Maps autocomplete — placeholder "maps loading…"
+- [ ] Top Skills — load skills — text "Loading..."
+- [ ] Top Skills — share PDF link — button text "Generating..."
+- [ ] Work Experience — load photos — text "Loading..."
+- [ ] Profile Review — load reviews — text "Loading..."
+- [ ] Gallery — set default photo — inline `LogoLoader` on button
+
+## Organization profile (`/organization-profile`)
+
+| Action | Indicator |
+| --- | --- |
+| Initial page / Auth0 user load | `AppSpin` large |
+| Save organization name | Button `loading={isSavingName}` |
+| Claim organization | Button `loading={claimLoading}` |
+| Save organization summary | Button `loading={isSavingSummary}` |
+| Generate bio (AI) | Button shows `AppSpin` |
+| Load job feeds list | `FormLoader` |
+
+### Organization profile QA checklist
+
+- [ ] Initial page / Auth0 user load — `AppSpin` large
+- [ ] Save organization name — `loading={isSavingName}`
+- [ ] Claim organization — `loading={claimLoading}`
+- [ ] Save organization summary — `loading={isSavingSummary}`
+- [ ] Generate bio (AI) — button shows `AppSpin`
+- [ ] Load job feeds list — `FormLoader`
+
+## Organization profile guest (`/organization-profile-guest`)
+
+| Action | Indicator |
+| --- | --- |
+| Initial page load | `AppSpin` large |
+| Load job feeds | `FormLoader` |
+
+### Organization profile guest QA checklist
+
+- [ ] Initial page load — `AppSpin` large
+- [ ] Load job feeds — `FormLoader`
+
+## Profile admin view (`/profile-admin-view`)
+
+| Action | Indicator |
+| --- | --- |
+| Load profile + job types | `AppSpin` wrapper — "Loading details..." |
+| Missing profile context | `FormLoader` |
+| Load skills section | `AppSpin` inline |
+| Upload / change avatar | Inline `LogoLoader` (48px) |
+| Generate PDF | Overlay — "Generating PDF… {progress}%" |
+| Send org invite | Button `loading={loadingSendInvites}` |
+| Share job | Button `loading={loadingShareJob}` |
+
+### Profile admin view QA checklist
+
+- [ ] Load profile + job types — `AppSpin` ("Loading details...")
+- [ ] Missing profile context — `FormLoader`
+- [ ] Load skills section — `AppSpin` inline
+- [ ] Upload / change avatar — inline `LogoLoader` (48px)
+- [ ] Generate PDF — overlay with progress %
+- [ ] Send org invite — `loading={loadingSendInvites}`
+- [ ] Share job — `loading={loadingShareJob}`
+
+## Chat (`/chat`)
+
+| Action | Indicator |
+| --- | --- |
+| Refresh conversations | Refresh button — `getLogoLoaderIndicator(20)` |
+| Restore archived conversation | Button `loading={isRestoringConversation(id)}` |
+| Load user list (create group modal) | `AppSpin` |
+| Create group chat submit | Button `loading={submitting}` |
+| Load chat list in sidebar | `AppSpin` (ChatListUser) |
+| Load messages dropdown (header) | `AppSpin` small (DropdownMessage) |
+| Chat bubble — upload media | Inline `AppSpin` small + upload progress text |
+| Chat bubble — send message | Send button `loading={isSending}` |
+| Chat bubble — send invite | Button `loading={isSendingInvite}` |
+| Chat bubble — submit review | Button with `getLogoLoaderIndicator('small')` |
+
+### Chat QA checklist
+
+- [ ] Refresh conversations — `getLogoLoaderIndicator(20)` on refresh button
+- [ ] Restore archived conversation — `loading={isRestoringConversation(id)}`
+- [ ] Load user list (create group modal) — `AppSpin`
+- [ ] Create group chat submit — `loading={submitting}`
+- [ ] Load chat list in sidebar — `AppSpin` (ChatListUser)
+- [ ] Load messages dropdown — `AppSpin` small (DropdownMessage)
+- [ ] Chat bubble — upload media — inline `AppSpin` small + progress text
+- [ ] Chat bubble — send message — `loading={isSending}`
+- [ ] Chat bubble — send invite — `loading={isSendingInvite}`
+- [ ] Chat bubble — submit review — `getLogoLoaderIndicator('small')`
+
+## Jobs (`/jobs`, `/job-details`, `/add-new-job`)
+
+| Action | Indicator |
+| --- | --- |
+| Load job feeds list | `FormLoader` |
+| Share job — search users modal | Text — "Loading users..." |
+| Job details — apply for job | Button `loading={saveJobApplication.isLoading}` |
+| Job details page — load job data | `AppSpin` large |
+| Add new job — load projects dropdown | Select `loading={isLoadingProject}` |
+| Add new job — create job | Button `loading={saveJobFeeds.isLoading}` |
+
+### Jobs QA checklist
+
+- [ ] Load job feeds list — `FormLoader`
+- [ ] Share job — search users modal — text "Loading users..."
+- [ ] Job details — apply for job — `loading={saveJobApplication.isLoading}`
+- [ ] Job details page — load job data — `AppSpin` large
+- [ ] Add new job — load projects dropdown — `loading={isLoadingProject}`
+- [ ] Add new job — create job — `loading={saveJobFeeds.isLoading}`
+
+## History & applicants (`/history`, `/admin-history`, `/applicant`)
+
+| Action | Indicator |
+| --- | --- |
+| History — initial load | `FormLoader` |
+| History — accept / reject application | Per-row button `loading={isPending(id)}` |
+| Admin history — initial load | `FormLoader` |
+| Applicant page — load applicants | `LogoLoader` 72px — "Loading applicants..." |
+| Applicant — accept / reject | Per-applicant button `loading={isPending(id)}` |
+| Applicant — submit review | Button with `getLogoLoaderIndicator('small')` |
+
+### History & applicants QA checklist
+
+- [ ] History — initial load — `FormLoader`
+- [ ] History — accept / reject application — per-row `loading={isPending(id)}`
+- [ ] Admin history — initial load — `FormLoader`
+- [ ] Applicant page — load applicants — `LogoLoader` 72px ("Loading applicants...")
+- [ ] Applicant — accept / reject — per-applicant `loading={isPending(id)}`
+- [ ] Applicant — submit review — `getLogoLoaderIndicator('small')`
+
+## Teams (`/teams`)
+
+| Action | Indicator |
+| --- | --- |
+| Initial teams load | `AppSpin` large |
+| Invite user to team | Button `loading={isInvitingUser}` |
+| Create team | Button `loading={isCreatingTeam}` |
+
+### Teams QA checklist
+
+- [ ] Initial teams load — `AppSpin` large
+- [ ] Invite user to team — `loading={isInvitingUser}`
+- [ ] Create team — `loading={isCreatingTeam}`
+
+## Organizations (`/organizations`)
+
+| Action | Indicator |
+| --- | --- |
+| Load user organizations | `FormLoader` |
+
+### Organizations QA checklist
+
+- [ ] Load user organizations — `FormLoader`
+
+## Feeds / search workers (`/feeds`)
+
+| Action | Indicator |
+| --- | --- |
+| Load user list (search) | `AppSpin` |
+| Load worker search results | `FormLoader` |
+
+### Feeds QA checklist
+
+- [ ] Load user list (search) — `AppSpin`
+- [ ] Load worker search results — `FormLoader`
+
+## Map (`/map`)
+
+| Action | Indicator |
+| --- | --- |
+| Load current GPS location / coordinates | `AppSpin` — "Loading current location..." |
+| Plan route | Button `loading={isPlanningRoute}` |
+
+### Map QA checklist
+
+- [ ] Load current GPS location — `AppSpin` ("Loading current location...")
+- [ ] Plan route — `loading={isPlanningRoute}`
+
+## Calendar (`/calendar`)
+
+| Action | Indicator |
+| --- | --- |
+| Load job feeds + applied jobs | Text — "Loading calendar events..." |
+
+### Calendar QA checklist
+
+- [ ] Load job feeds + applied jobs — text "Loading calendar events..."
+
+## Invite (`/invite`)
+
+| Action | Indicator |
+| --- | --- |
+| Page bootstrap (auth + client + invite data) | `AppSpin` large |
+| Accept invite | Button `loading={isAcceptingInvite}` |
+| Load org tab content | `AppSpin` inline |
+| Invalid / loading states | `AppSpin` large |
+
+### Invite QA checklist
+
+- [ ] Page bootstrap — `AppSpin` large
+- [ ] Accept invite — `loading={isAcceptingInvite}`
+- [ ] Load org tab content — `AppSpin` inline
+- [ ] Invalid / loading states — `AppSpin` large
+
+## User registration (`/user-registration`)
+
+| Action | Indicator |
+| --- | --- |
+| Save registration | Button `loading={isSaving}` |
+
+### User registration QA checklist
+
+- [ ] Save registration — `loading={isSaving}`
+
+## Support (`/support`)
+
+| Action | Indicator |
+| --- | --- |
+| AI assistant replying | Status — "Assistant is typing…" + send button shows inline `LogoLoader` |
+
+### Support QA checklist
+
+- [ ] AI assistant replying — "Assistant is typing…" + inline `LogoLoader` on send button
+
+## Gallery / tagging
+
+| Action | Indicator |
+| --- | --- |
+| TaggingImage — image processing | `AppSpin` inline |
+| Gallery — update default photo | Inline `LogoLoader` on button |
+
+### Gallery / tagging QA checklist
+
+- [ ] TaggingImage — image processing — `AppSpin` inline
+- [ ] Gallery — update default photo — inline `LogoLoader` on button
+
+## Header / sidebar (global UI)
+
+| Action | Indicator |
+| --- | --- |
+| DropdownUser — load user data | `AppSpin` small (avatar area) |
+| DropdownMessage — load chat list | `AppSpin` small |
+| SelectOrganization — load user orgs | `AppSpin` |
+
+### Header / sidebar QA checklist
+
+- [ ] DropdownUser — load user data — `AppSpin` small (avatar area)
+- [ ] DropdownMessage — load chat list — `AppSpin` small
+- [ ] SelectOrganization — load user orgs — `AppSpin`
