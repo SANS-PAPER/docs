@@ -66,7 +66,89 @@
     },
     
     {
-      "group": "User Testing",
+      "group": "Essentials",
+      "pages": [
+        "essentials/markdown",
+        "essentials/code",
+        "essentials/images",
+        "essentials/settings",
+        "essentials/navigation",
+        "essentials/reusable-snippets"
+      ]
+    },
+    {
+      "group": "Developers Guide",
+      "pages": [
+        "dev-guide/introduction"
+      ]
+    },
+    {
+      "group": "API Documentation",
+      "pages": [
+        "api-reference/introduction"
+      ]
+    },
+    {
+      "group": "Endpoint Examples",
+      "pages": [
+        "api-reference/endpoint/get",
+        "api-reference/endpoint/create",
+        "api-reference/endpoint/delete"
+      ]
+    },
+    {
+      "group": "Sans Paper Form Web",
+      "pages": [
+        "dev-guide/spfw/deploy-local",
+        "dev-guide/spfw/deploy-staging",
+        "dev-guide/spfw/deploy-production",
+        "dev-guide/spfw/database-import",
+        "dev-guide/spfw/database-export",
+        "dev-guide/spfw/troubleshooting"
+      ]
+    },
+    {
+      "group": "Sans Paper Form Mobile",
+      "pages": [
+        "dev-guide/spfm/introduction"
+      ]
+    },
+    {
+      "group": "Sans Paper ID Web",
+      "pages": [
+        "dev-guide/spiw/introduction"
+      ]
+    },
+    {
+      "group": "Sans Paper ID Mobile",
+      "pages": [
+        "dev-guide/spim/introduction"
+        
+      ]
+    },
+    {
+      "group": "Sans Paper Augur",
+      "pages": [
+        "dev-guide/spa/deploy-local",
+        "dev-guide/spa/deploy-production",
+        "dev-guide/spa/add-graphile",
+        "dev-guide/spa/troubleshooting"
+      ]
+    },
+    {
+      "group": "Sans Paper Hub",
+      "pages": [
+        "dev-guide/sph/deploy-local"
+      ]
+    },
+    {
+      "group": "Sans Paper Connect",
+      "pages": [
+        "dev-guide/spc/deploy-production"
+      ]
+    },
+    {
+      "group": "AI & ML Guides",
       "pages": [
         "user-testing/spf",
         "user-testing/spi",
