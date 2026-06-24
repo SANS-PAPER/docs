@@ -26,14 +26,6 @@
     "url": "https://dashboard.mintlify.com"
   },
   "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    },
-    {
-      "name": "Developers Guide",
-      "url": "dev-guide"
-    }
   ],
   "anchors": [
     {
@@ -72,6 +64,7 @@
         "release-notes/spp"
       ]
     },
+    
     {
       "group": "Essentials",
       "pages": [
@@ -157,12 +150,11 @@
     {
       "group": "AI & ML Guides",
       "pages": [
-        "dev-guide/ai-guide/ai-vision",
-        "dev-guide/ai-guide/ai-chat",
-        "dev-guide/ai-guide/ai-chat-app",
-        "dev-guide/ai-guide/ai-dataAnalyze-chat",
-        "dev-guide/ai-guide/ai-import-files",
-        "dev-guide/ai-guide/ai-gemini-image"
+        "user-testing/spf",
+        "user-testing/spi",
+        "user-testing/spiweb",
+        "user-testing/sphweb",
+        "user-testing/spc"
       ]
     }
   ],
