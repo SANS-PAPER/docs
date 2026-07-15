@@ -3,6 +3,142 @@ title: 'SansPaper ID Web'
 description: 'All user testing for SansPaper ID Web'
 ---
 
+## 🚀 Testing Release 15th July 2026
+
+### 🔹 Sign Up & Sign In (End-to-End Walkthrough)
+#### 🧪 What's new
+- Full walkthrough of Sign Up, Sign In, registration, claim profile, and first-time profile setup for new users.
+- Includes friction points for the internal team and a simplified client-facing SOP.
+
+## Steps:
+
+| Step | Screen / Action | What the user sees / does | Screenshot reference |
+| --- | --- | --- | --- |
+| 1 | Landing / Leaderboard screen | New user opens Sans Paper ID Web and clicks "Sign Up." | `signupbutton.png` |
+| 2 | Sign-up form | User enters email address and password, clicks "Continue." | `signup auth0.png` |
+| 3 | Sign In | User clicks "Sign In" to enter the web app with the new credentials. | — |
+| 4 | User Registration Form (auto-popup) | System pops up a profile-details form immediately after sign-up. User can fill it in and click "Save," or close it — it will keep reappearing on future logins until completed. | `user-registration.png` |
+| 5 | Auto-created Organization | In the background, the system creates an organization for the user based on their email address — no explicit confirmation is shown to the user. | `create-own-org.png` |
+| 6 | Profile page reached | User lands on their Profile page and can now see profile fields, forms counters, and action buttons (Claim Profile, Share PDF Link, Add Skills). | — |
+| 7 | Claim Profile | User clicks "Claim Profile." | `claimprofile.png` |
+| 8 | Email verification (external) | System prompts the user to check their email and verify the claim. User must leave the app to complete this. | `verifyemail.png` |
+| 9 | Verified profile | After verifying via email, the system marks the profile as verified. | `verifiedprofile.png` |
+| 10 | Profile Summary — Edit with AI | On the same page, user clicks "Edit with AI," fills in User Title, Years of Experience, and Skills/Highlights, then clicks "Generate Summary." ⚠️ Confirmed blocker: this step stalled a fresh sign-up during today's manual check. | `orgsummaryAI.png` |
+| 11 | Add Skills (optional branch) | User can click "Add Skills," pick a skill form from the dropdown, which opens the external Sans Paper Form in a new tab to add skills. | `addskills.png` / `skillsform.png` |
+| 12 | Dashboard / active state | User returns to the main dashboard with a completed profile, verified email, an active organization, and is ready to search, filter, and apply for jobs. | — |
+
+### Step-by-step with screenshots
+
+1. Landing / Leaderboard — click **Sign Up**.
+
+<img
+    src="/images/spiweb/signupbutton.png"
+    alt="signup"
+  />
+
+2. Sign-up form — enter email and password, then click **Continue**.
+
+<img
+    src="/images/spiweb/signup auth0.png"
+    alt="signup auth0"
+  />
+
+3. Sign In with the new credentials.
+4. Complete (or dismiss) the User Registration Form popup.
+
+<img
+    src="/images/spiweb/user-registration.png"
+    alt="user-registration"
+  />
+
+5. Organization is auto-created from the user's email (no confirmation shown).
+
+<img
+    src="/images/spiweb/create-own-org.png"
+    alt="create own org"
+  />
+
+6. User lands on the Profile page (Claim Profile, Share PDF Link, Add Skills available).
+7. Click **Claim Profile**.
+
+<img
+    src="/images/spiweb/claimprofile.png"
+    alt="claim profile"
+  />
+
+8. Check email (and spam folder) to verify the claim.
+
+<img
+    src="/images/spiweb/verifyemail.png"
+    alt="verify email"
+  />
+
+9. Profile is marked as verified.
+
+<img
+    src="/images/spiweb/verifiedprofile.png"
+    alt="verified profile"
+  />
+
+10. Click **Edit with AI**, fill User Title, Years of Experience, and Skills/Highlights, then click **Generate Summary**.
+
+<img
+    src="/images/spiweb/orgsummaryAI.png"
+    alt="edit with AI summary"
+  />
+
+11. (Optional) Click **Add Skills**, select a form, and complete it in Sans Paper Form.
+
+<img
+    src="/images/spiweb/addskills.png"
+    alt="add skills"
+  />
+
+<img
+    src="/images/spiweb/skillsform.png"
+    alt="skills form"
+  />
+
+12. Dashboard is active — user can search, filter, and apply for jobs.
+
+### 🔹 Friction Point Identification
+
+Ranked by how likely each step is to cause a drop-off, based on whether it depends on external systems (email, AI processing), requires manual data entry, or gives the user no visible confirmation or recovery path.
+
+| # | Step in Flow | Type of Friction | Risk to Sign-Up Completion | Recommendation |
+| --- | --- | --- | --- | --- |
+| 1 | Email verification after "Claim Profile" | External dependency (email delivery) | High — user must leave the app; delayed, filtered, or spam-folder emails stall or lose the user entirely | Add in-app resend + spam-folder reminder; consider allowing profile use before verification with a visible "unverified" banner |
+| 2 | User Registration Form (post sign-up) | Manual data entry, recurring popup | Medium — the form reappears every session until fully completed, which reads as a blocker/loop rather than a one-time step | Allow "Save & continue later" with a persistent but dismissible reminder instead of a forced popup |
+| 3 | Organization Summary — "Edit with AI" | AI processing step (Business Title, Years of Experience, Skills/Highlights required before "Generate Summary" works) | High — this is the exact step that blocked today's fresh sign-up; if required fields are unclear or the AI call fails/times out, the user has no forward path | Make this step explicitly optional/skippable on first login; add a visible loading state, error/retry messaging, and a manual-entry fallback if AI generation fails |
+| 4 | Auto-created Organization (on sign-up) | Silent system action, no confirmation shown | Low–Medium — user may not realize an org was created for them and may try to create a duplicate | Add a one-line confirmation toast: "Your organization '\<name\>' was created automatically" |
+| 5 | "Add Skills" → external Sans Paper Form | Context switch to a separate form/tab | Medium — leaving the core app to fill an external form is a natural drop-off point | Track completion/return rate separately; consider embedding the form instead of opening a new tab |
+| 6 | Role confusion (Admin / Super Admin / Employee) | Manual configuration, no guided default | Medium — new users are not told which role they need before they can create or apply for jobs | Add a short role-selection prompt during onboarding with plain-language descriptions |
+
+<Warning>
+  Step 10 (Organization Summary — Edit with AI) is the confirmed live blocker from today's fresh registration attempt. This should be the first item fixed or made skippable, since it currently sits between a new user and their active dashboard with no visible fallback.
+</Warning>
+
+### 🔹 Client-Facing SOP (Simplified)
+
+A short, plain-language version of the walkthrough for client / BMS documentation. Internal jargon and friction-point commentary are omitted here — those live in the friction table above for the internal team only.
+
+**Sans Paper ID — Getting Started for New Users**
+
+1. Go to the Sans Paper ID Web sign-up page and click **Sign Up**.
+2. Enter a work email address and create a password, then click **Continue**.
+3. Sign in with the new account.
+4. Complete the short registration form when it appears (name, role details). This can be saved partially, but it will reappear until finished.
+5. Your organization is created automatically — no separate action needed.
+6. On your Profile page, click **Claim Profile**, then check your email inbox (and spam folder) for the verification link.
+7. Click the verification link to confirm your profile.
+8. On the Organization page, click **Edit with AI**, fill in your business title, years of experience, and key skills, then click **Generate Summary**. If this step fails to load, refresh once and retry, or fill the summary in manually and continue.
+9. (Optional) Click **Add Skills** to open the skills form and add your certifications.
+10. You're in — your dashboard is now active and you can search or post jobs.
+
+<Note>
+  Once Step 10 (Edit with AI) is stabilized, this SOP can go to clients as-is.
+</Note>
+
 ## 🚀 Testing Release 13rd April 2026
 
 ### 🔹 Ability to share job to other users.
