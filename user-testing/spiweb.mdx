@@ -3,6 +3,122 @@ title: 'SansPaper ID Web'
 description: 'All user testing for SansPaper ID Web'
 ---
 
+## 🚀 Testing Release 30th July 2026
+
+### 🔹 Create New Job — Skills, Forms, Assets & Bench
+#### 🧪 What's new
+- Admins can attach **Required Skills**, **Required Forms**, and **Assets & Equipment** when creating a job.
+- **Bench visible** / **Hidden from Bench** controls whether the role appears under Available Now on the Job Board and as Available on the calendar.
+
+## Steps:
+
+| Step | Screen / Action | What the user sees / does |
+| --- | --- | --- |
+| 1 | History / Jobs | Admin opens History and clicks the **+** button to create a new job. |
+| 2 | Job details | Admin fills in the usual job fields (title, dates, location, etc.). |
+| 3 | Required Skills | Admin types a skill (e.g. React, Welding, Forklift License) and presses **Enter** to add it. Skills drive who sees this job on the Job Board and Digital Resume matching. |
+| 4 | Required Forms | Admin selects one or more SP Form templates (e.g. Evidence Form, Manager Sign-Off). Workers open them from the job Forms tab; required forms must be completed before **Finish Job**. |
+| 5 | Assets & Equipment | Admin selects equipment for this job from SP Form (admin-maintained). SPID stores read-only references only — asset data lives in SP Form. |
+| 6 | Bench visible | Leave **off** unless this is a quiet-patch listing. When **on**, the role appears under Available Now on the Job Board and as Available on the calendar. Label when off: **Hidden from Bench**. |
+| 7 | Create | Admin clicks **Create**. The new job appears in History → All. |
+
+### Field reference
+
+**Required Skills**
+- Placeholder example: React, Welding, Forklift License
+- Drives who sees this job on the Job Board and Digital Resume matching. Type a skill and press Enter to add.
+
+<img
+    src="/images/spiweb/required_skills.png"
+    alt="signup"
+  />
+
+**Required Forms**
+- Select one or more form templates
+- Attach SP Form templates for this job (e.g. Evidence Form, Manager Sign-Off). Workers open them from the job Forms tab; required forms must be completed before Finish Job.
+
+<img
+    src="/images/spiweb/required_forms.png"
+    alt="signup"
+  />
+
+**Assets & Equipment**
+- Select equipment for this job
+- Attach equipment from SP Form (admin-maintained). SPID stores read-only references only — asset data lives in SP Form.
+
+<img
+    src="/images/spiweb/assets_refs.png"
+    alt="signup"
+  />
+
+**Bench visible / Hidden from Bench**
+- Leave off unless this is a quiet-patch listing. When on, the role appears under Available Now on the Job Board and as Available on the calendar.
+
+<img
+    src="/images/spiweb/bench_visible.png"
+    alt="signup"
+  />
+
+### 🔹 Finish Job / Milestone (Contractor)
+#### 🧪 What's new
+- On the contractor side, once an admin has accepted the job request, the contractor can **Check In** to start the job and **Check Out** when stopping.
+- After finishing work, the contractor clicks **Finish Job / Milestone**, then fills in any required forms if they were attached to the job.
+
+## Steps:
+
+| Step | Screen / Action | What the user sees / does |
+| --- | --- | --- |
+| 1 | Job accepted | Admin has accepted the contractor's job request. The job is available for the contractor to work. |
+| 2 | Check In | Contractor opens the accepted job and clicks **Check In** to start the job session. |
+| 3 | Check Out | When stopping work, contractor clicks **Check Out** to end the current session. |
+| 4 | Finish Job / Milestone | When the job (or milestone) is done, contractor clicks **Finish Job / Milestone**. This is separate from Check Out. |
+| 5 | Required forms | If required forms were attached to the job, contractor fills them in (opened from the job Forms tab / deep-link to SP Form). Required forms must be completed before Finish can succeed. |
+
+<img
+    src="/images/spiweb/check_in.png"
+    alt="check in"
+  />
+
+<img
+    src="/images/spiweb/check_out.png"
+    alt="check out"
+  />
+
+<img
+    src="/images/spiweb/finish_job.png"
+    alt="finish job milestone"
+  />
+
+### 🔹 Approve for Invoicing
+#### 🧪 What's new
+- Admin clicks **Approve for Invoicing** on SPID, which opens the sign-off form on Sans Paper Form (SPF).
+- On SPF, **Approve** (admin) or **Ready for Invoicing** (manager) on the sign-off form triggers an automated email to the Owner with a PDF link for the job.
+
+## Steps:
+
+| Step | Screen / Action | What the user sees / does |
+| --- | --- | --- |
+| 1 | SPID — Approve for Invoicing | Admin opens the completed job on SPID and clicks **Approve for Invoicing**. The system directs them to the sign-off form on SPF. |
+| 2 | SPF — Admin Approve | Admin opens the sign-off form, selects the **Job** from the dropdown, and ticks **Approve**. |
+| 3 | Email (Admin Approve) | System sends an automated email to the Owner: `PAYMENT APPROVED: [Job ID] – [Contractor Name]`, with a link to the PDF showing the Job ID. |
+| 4 | SPF — Manager Ready for Invoicing | Manager opens the sign-off form, selects the **Job** from the dropdown, and ticks **Ready for Invoicing**. |
+| 5 | Email (Ready for Invoicing) | System sends an automated email to the Owner: `PAYMENT APPROVED: [Job ID] – [Contractor Name]`, with a link to the PDF showing the Job ID. |
+
+<img
+    src="/images/spiweb/approve_invoice.png"
+    alt="approve for invoicing"
+  />
+
+<img
+    src="/images/spiweb/admin_approve.png"
+    alt="admin approve sign-off"
+  />
+
+<img
+    src="/images/spiweb/ready_for_invoice.png"
+    alt="ready for invoicing"
+  />
+
 ## 🚀 Testing Release 15th July 2026
 
 ### 🔹 Sign Up & Sign In (End-to-End Walkthrough)
@@ -429,6 +545,7 @@ A short, plain-language version of the walkthrough for client / BMS documentatio
 - Go to History
 - Click the plus button in the right top 
 - Insert the details according to job and click on the create button
+- Optionally set **Required Skills**, **Required Forms**, **Assets & Equipment**, and **Bench visible** / **Hidden from Bench** (see Testing Release 30th July 2026)
 - The new job will update in History "All" section
 
 
