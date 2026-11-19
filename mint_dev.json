@@ -52,6 +52,12 @@
       "url": "https://mintlify.com/blog"
     }
   ],
+  "redirects": [
+    {
+      "source": "/release-notes/spf",
+      "destination": "/release-notes/spf/2026"
+    }
+  ],
   "navigation": [
     {
       "group": "Get Started",
@@ -64,7 +70,13 @@
     {
       "group": "Release Notes",
       "pages": [
-        "release-notes/spf",
+        {
+          "group": "SansPaper Form",
+          "pages": [
+            "release-notes/spf/2026",
+            "release-notes/spf/2025"
+          ]
+        },
         "release-notes/spfm",
         "release-notes/spi",
         "release-notes/spc",
