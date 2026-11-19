@@ -48,6 +48,10 @@
     {
       "source": "/release-notes/spf",
       "destination": "/release-notes/spf/2026"
+    },
+    {
+      "source": "/release-notes/spfm",
+      "destination": "/release-notes/spfm/2026"
     }
   ],
   "navigation": [
@@ -69,7 +73,13 @@
             "release-notes/spf/2025"
           ]
         },
-        "release-notes/spfm",
+        {
+          "group": "SansPaper Form Mobile",
+          "pages": [
+            "release-notes/spfm/2026",
+            "release-notes/spfm/2025"
+          ]
+        },
         "release-notes/spi",
         "release-notes/spc",
         "release-notes/sph",
